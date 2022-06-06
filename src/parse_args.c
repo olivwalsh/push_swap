@@ -6,7 +6,13 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 16:26:31 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/06 16:26:32 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/06 16:29:53 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../include/push_swap.h"
+
+int	check_args(int argc, char **argv)
+{
+	
+}
