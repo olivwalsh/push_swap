@@ -6,7 +6,7 @@ NAME = push_swap
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror -O3 -g
 
 SRC =	src/moves.c \
 		src/push_swap.c \
@@ -20,21 +20,23 @@ OBJ = $(addprefix ${OBJDIR}/,${SRC:.c=.o})
 
 INC = -I./${INCDIR}
 
-LIBFT = -L./${INCDIR}/libft -lft
+LIBFT = ${INCDIR}/libft/libft.a
 
-all: $(NAME) 
+all: $(NAME)
 
-$(NAME): $(OBJ) libft 
-	$(CC) $(CFLAGS) $(INC) -O3 $(OBJ) -o $@ $(LIBFT)
+${LIBFT}: libft
+
+$(NAME): $(OBJ) ${LIBFT}
+	@echo -n "Compiling push_swap"
+	@$(CC) $(CFLAGS) $(INC) $(OBJ) -o $@ $(LIBFT)
+	@echo ${GREEN}"\t\tOK"${RESET}
 
 ${OBJDIR}/%.o : %.c
 	mkdir -p ${@D}
-	$(CC) $(CFLAGS) $(INC) -O3 -c $< -o $@
+	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 libft:
-	@echo -n "Compiling libft"
 	@make -s -C${INCDIR}/libft
-	@echo ${GREEN}"\t\tOK"${RESET}
 
 clean :
 	rm -rf $(OBJDIR)
