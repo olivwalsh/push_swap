@@ -10,7 +10,8 @@ CFLAGS = -Wall -Wextra -Werror -O3 -g
 
 SRC =	src/moves.c \
 		src/push_swap.c \
-		src/parse_args.c
+		src/parse_args.c \
+		src/init.c
 
 OBJDIR = objs
 

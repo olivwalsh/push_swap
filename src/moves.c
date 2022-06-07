@@ -6,60 +6,74 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 16:06:27 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/07 18:45:13 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/07 19:16:34 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-t_number	*stack_last(t_number *number)
+//pa
+void	push_a()
 {
-	if (!number)
-		return (NULL);
-	while (number->next)
-		number = number->next;
-	return (number);
+	
 }
 
-void	stack_add_back(t_stack **stack, t_number *new)
+//pb
+void	push_b()
 {
-	t_number	*last;
-
-	if ((*stack)->first)
-	{
-		last = stack_last((*stack)->first);
-		new->previous = last;
-		last->next = new;
-		
-	}
-	else
-		(*stack)->first = new;
+	
 }
 
-t_number	*new_number(int num)
+//sa
+void	swap_a()
 {
-	t_number	*new;
-
-	new = malloc(sizeof(t_number));
-	if (!new)
-		return (NULL);
-	new->num  = num;
-	new->next = NULL;
-	new->previous = NULL;
-	new->from_index = -1;
-	new->to_index = -1;
-	return (new);
+	
 }
 
-void	initialize(t_stack *a, int **tab, int size)
+//sb
+void	swap_b()
 {
-	int			i;
+	
+}
 
-	i = 0;
-	while (i < size)
-	{
-		stack_add_back(&a, new_number(tab[0][i]));
-		i++;
-	}
-	a->size = i;
+//ss
+void	swap_both()
+{
+	
+}
+
+//ra
+void	rotate_a()
+{
+	
+}
+
+//rb
+void	rotate_b()
+{
+	
+}
+
+//rr
+void	rotate_both()
+{
+	
+}
+
+//rra
+void	rotate_reverse_a()
+{
+	
+}
+
+//rrb
+void	rotate_reverse_b()
+{
+	
+}
+
+//rrr
+void	rotate_reverse_both()
+{
+	
 }
