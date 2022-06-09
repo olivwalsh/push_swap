@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 16:06:27 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/09 09:15:28 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/09 10:35:55 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,23 +54,49 @@ void	push_b(t_stack *a, t_stack *b)
 			new->next = b_first;
 		}
 		else
+		{
 			b->first = new;
 			b->first->next = NULL;
 			b->first->previous = NULL;
+		}
 	}
 }
 
-// //sa
-// void	swap_a()
-// {
+//sa
+void	swap_a(t_stack *a)
+{
+	t_number	*first;
+	t_number	*second;
 	
-// }
+	first = a->first;
+	second = a->first->next;
+	if (first && second)
+	{
+		a->first = second;
+		first->next = second->next;
+		a->first->next = first;
+		second->previous = NULL;
+		first->previous = second;
+	}
+}
 
-// //sb
-// void	swap_b()
-// {
+//sb
+void	swap_b(t_stack *b)
+{
+	t_number	*first;
+	t_number	*second;
 	
-// }
+	if (b->first &&  b->first->next)
+	{
+		first = b->first;
+		second = b->first->next;
+		b->first = second;
+		first->next = second->next;
+		b->first->next = first;
+		second->previous = NULL;
+		first->previous = second;
+	}
+}
 
 // //ss
 // void	swap_both()
