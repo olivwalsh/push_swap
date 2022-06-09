@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 15:34:09 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/09 09:54:38 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/09 11:40:37 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,10 @@ void		push_b(t_stack *a, t_stack *b);
 void		display_stack(t_stack *s);
 void		swap_a(t_stack *a);
 void		swap_b(t_stack *b);
-
+void		swap_both(t_stack *a, t_stack *b);
+void		rotate_a(t_stack *a);
+void		reverse_rotate_a(t_stack *a);
+void		reverse_rotate_b(t_stack *b);
+void	rotate_reverse_both(t_stack *a, t_stack *b);
 
 #endif
