@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 19:07:31 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/07 19:07:41 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/09 09:11:58 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,16 @@ void	initialize(t_stack *a, int **tab, int size)
 		i++;
 	}
 	a->size = i;
+}
+
+void	display_stack(t_stack *s)
+{
+	t_number	*ptr;
+
+	ptr = s->first;
+	while (ptr)
+	{
+		printf("ptr->num = %d\n", ptr->num);
+		ptr = ptr->next;
+	}
 }

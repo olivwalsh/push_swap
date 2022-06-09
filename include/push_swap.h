@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 15:34:09 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/07 18:31:18 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/09 09:11:46 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,15 @@ typedef struct s_stack
 	int		size;	
 }			t_stack;
 
-void	initialize(t_stack *a, int **tab, int size);
-int		check_args(int argc, char **argv, int *size);
-int		fill_stack(int size, char **argv, int **tab);
+void		initialize(t_stack *a, int **tab, int size);
+int			check_args(int argc, char **argv, int *size);
+int			fill_stack(int size, char **argv, int **tab);
+t_number	*new_number(int num);
+void		stack_add_back(t_stack **stack, t_number *new);
+t_number	*stack_last(t_number *number);
+void		push_a(t_stack *a, t_stack *b);
+void		push_b(t_stack *a, t_stack *b);
+void	display_stack(t_stack *s);
 
 
 #endif
