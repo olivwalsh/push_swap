@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 15:34:09 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/09 11:40:37 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/09 20:02:56 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include "libft/libft.h"
 #include <stdio.h>
+#include <unistd.h>
 
 typedef struct s_number
 {
@@ -40,12 +41,12 @@ t_number	*stack_last(t_number *number);
 void		push_a(t_stack *a, t_stack *b);
 void		push_b(t_stack *a, t_stack *b);
 void		display_stack(t_stack *s);
-void		swap_a(t_stack *a);
-void		swap_b(t_stack *b);
-void		swap_both(t_stack *a, t_stack *b);
-void		rotate_a(t_stack *a);
-void		reverse_rotate_a(t_stack *a);
-void		reverse_rotate_b(t_stack *b);
-void	rotate_reverse_both(t_stack *a, t_stack *b);
+void		swap_s(t_stack *b);
+void		swap(t_stack *a, t_stack *b, int i);
+void		rotate_s(t_stack *b);
+void		rotate(t_stack *a, t_stack *b, int i);
+void		reverse_rotate_s(t_stack *b)
+void		rotate_reverse(t_stack *a, t_stack *b, int i);
+int			stack_size(t_stack *s);
 
 #endif

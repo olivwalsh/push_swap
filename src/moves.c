@@ -6,13 +6,12 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 16:06:27 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/09 11:39:45 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/09 20:03:25 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-//pa
 void	push_a(t_stack *a, t_stack *b)
 {
 	t_number	*a_first;
@@ -35,10 +34,10 @@ void	push_a(t_stack *a, t_stack *b)
 			a->first->next = NULL;
 			a->first->previous = NULL;
 		}
+		write(1, "pa\n", 3);
 	}
 }
 
-//pb
 void	push_b(t_stack *a, t_stack *b)
 {
 	t_number	*b_first;
@@ -61,29 +60,11 @@ void	push_b(t_stack *a, t_stack *b)
 			b->first->next = NULL;
 			b->first->previous = NULL;
 		}
+		write(1, "pb\n", 3);
 	}
 }
 
-//sa
-void	swap_a(t_stack *a)
-{
-	t_number	*first;
-	t_number	*second;
-
-	if (a->first && a->first->next)
-	{
-		first = a->first;
-		second = a->first->next;
-		a->first = second;
-		first->next = second->next;
-		a->first->next = first;
-		second->previous = NULL;
-		first->previous = second;
-	}
-}
-
-//sb
-void	swap_b(t_stack *b)
+void	swap_s(t_stack *b)
 {
 	t_number	*first;
 	t_number	*second;
@@ -100,32 +81,27 @@ void	swap_b(t_stack *b)
 	}
 }
 
-//ss
-void	swap_both(t_stack *a, t_stack *b)
+void	swap(t_stack *a, t_stack *b, int i)
 {
-	swap_a(a);
-	swap_a(b);
-}
-
-//ra
-void	rotate_a(t_stack *a)
-{
-	t_number	*first;
-	t_number	*ptr;
-
-	if (a->first && a->first->next)
+	if (i == 0)
 	{
-		first = a->first;
-		a->first = first->next;
-		ptr = a->first;
-		first->previous = NULL;
-		stack_last(ptr)->next = first;
-		first->next = NULL;
+		swap_s(a);
+		write(1, "sa\n", 3);
+	}
+	else if (i == 1)
+	{
+		swap_s(b);
+		write(1, "sb\n", 3);
+	}
+	else if (i == 2)
+	{
+		swap_s(a);
+		swap_s(b);
+		write(1, "ss\n", 3);
 	}
 }
 
-//rb
-void	rotate_b(t_stack *b)
+void	rotate_s(t_stack *b)
 {
 	t_number	*first;
 	t_number	*ptr;
@@ -141,32 +117,27 @@ void	rotate_b(t_stack *b)
 	}
 }
 
-//rr
-void	rotate_both(t_stack *a, t_stack *b)
+void	rotate(t_stack *a, t_stack *b, int i)
 {
-	rotate_a(a);
-	rotate_b(b);
-}
-
-//rra
-void	reverse_rotate_a(t_stack *a)
-{
-	t_number	*last;
-	t_number	*before_last;
-
-	if (a->first && a->first->next)
+	if (i == 0)
 	{
-		last = stack_last(a->first);
-		before_last = last->previous;
-		before_last->next = NULL;
-		last->previous = NULL;
-		last->next = a->first;
-		a->first = last;
+		rotate_s(a);
+		write(1, "ra\n", 3);
+	}
+	else if (i == 1)
+	{
+		rotate_s(b);
+		write(1, "rb\n", 3);
+	}
+	else if (i == 2)
+	{
+		rotate_s(a);
+		rotate_s(b);
+		write(1, "rr\n", 3);
 	}
 }
 
-//rrb
-void	reverse_rotate_b(t_stack *b)
+void	reverse_rotate_s(t_stack *b)
 {
 	t_number	*last;
 	t_number	*before_last;
@@ -182,9 +153,22 @@ void	reverse_rotate_b(t_stack *b)
 	}
 }
 
-//rrr
-void	rotate_reverse_both(t_stack *a, t_stack *b)
+void	rotate_reverse(t_stack *a, t_stack *b, int i)
 {
-	reverse_rotate_a(a);
-	reverse_rotate_b(b);
+	if (i == 0)
+	{
+		reverse_rotate_s(a);
+		write(1, "rra\n", 3);
+	}
+	else if (i == 1)
+	{
+		reverse_rotate_s(b);
+		write(1, "rrb\n", 3);
+	}
+	else if (i == 2)
+	{
+		reverse_rotate_s(a);
+		rotate_s(b);
+		write(1, "rrr\n", 3);
+	}
 }

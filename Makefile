@@ -4,14 +4,15 @@ RESET = "\033[m"
 
 NAME = push_swap
 
-CC = gcc
+CC = cc
 
 CFLAGS = -Wall -Wextra -Werror -O3 -g
 
 SRC =	src/moves.c \
 		src/push_swap.c \
 		src/parse_args.c \
-		src/init.c
+		src/init.c \
+		src/push_swap2.c
 
 OBJDIR = objs
 

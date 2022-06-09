@@ -6,13 +6,21 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 15:56:14 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/09 11:40:51 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/09 19:53:25 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-int	main(int argc, char **argv)
+void	push_swap(t_stack *a)
+{
+	int	size;
+
+	size = stack_size(a);
+	
+}
+
+int		main(int argc, char **argv)
 {
 	t_stack 	a;
 	t_stack 	b;
@@ -29,9 +37,16 @@ int	main(int argc, char **argv)
 		free(tab);
 		printf("Error\n");
 	}
-	
+
 	// TESTING
-	
+	printf("stack a\n");
+	display_stack(&a);
+	swap(&a, &b, 3);
+	printf("stack a\n");
+	display_stack(&a);
+	push_b(&a, &b);
+	printf("stack b\n");
+	display_stack(&b);
 
 	return (0);
 }
