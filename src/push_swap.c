@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 15:56:14 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/10 12:13:55 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/10 16:04:17 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,12 @@ int		main(int argc, char **argv)
 	}
 
 	// TESTING
-	// rotate_reverse(&a, &b, 0);
-	// display_stack(&a);
 	display_stack(&a);
+	sort_five(&a, &b);
+	printf("SORTED STACK:\n");
+	display_stack(&a);
+	// sort_three(&a, &b);
+	// display_stack(&a);
+	
 	return (0);
 }

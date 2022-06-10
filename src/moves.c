@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 16:06:27 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/10 11:42:57 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/10 18:25:05 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	push_a(t_stack *a, t_stack *b)
 	if (b && b->first)
 	{
 		new = b->first;
+		
 		b->first = b->first->next;
 		if (a->first)
 		{
@@ -27,6 +28,7 @@ void	push_a(t_stack *a, t_stack *b)
 			a_first->previous = new;
 			a->first = new;
 			a->first->next = a_first;
+			
 		}
 		else
 		{
@@ -101,19 +103,20 @@ void	swap(t_stack *a, t_stack *b, int i)
 	}
 }
 
-void	rotate_s(t_stack *b)
+void	rotate_s(t_stack *s)
 {
-	t_number	*first;
-	t_number	*ptr;
+	t_number	*head;
+	t_number	*tail;
 
-	if (b->first)
+	if (s->first)
 	{
-		first = b->first;
-		b->first = first->next;
-		ptr = b->first;
-		ptr->previous = NULL;
-		stack_last(ptr)->next = first;
-		first->next = NULL;
+		head = s->first;
+		tail = stack_last(head);
+		tail->next = head;
+		head->previous = tail;
+		s->first = head->next;
+		s->first->previous = NULL;
+		head->next = NULL;
 	}
 }
 
@@ -137,23 +140,24 @@ void	rotate(t_stack *a, t_stack *b, int i)
 	}
 }
 
-void	reverse_rotate_s(t_stack *b)
+void	reverse_rotate_s(t_stack *s)
 {
-	t_number	*last;
-	t_number	*before_last;
+	t_number	*head;
+	t_number	*tail;
 
-	if (b->first && b->first->next)
+	if (s->first && s->first->next)
 	{
-		last = stack_last(b->first);
-		before_last = last->previous;
-		before_last->next = NULL;
-		last->previous = NULL;
-		last->next = b->first;
-		b->first = last;
+		head = s->first;
+		tail = stack_last(s->first);
+		tail->previous->next = NULL;
+		s->first = tail;
+		tail->previous = NULL;
+		tail->next = head;
+		head->previous = s->first;
 	}
 }
 
-void	rotate_reverse(t_stack *a, t_stack *b, int i)
+void	reverse_rotate(t_stack *a, t_stack *b, int i)
 {
 	if (i == 0)
 	{
@@ -168,7 +172,7 @@ void	rotate_reverse(t_stack *a, t_stack *b, int i)
 	else if (i == 2)
 	{
 		reverse_rotate_s(a);
-		rotate_s(b);
+		reverse_rotate_s(b);
 		write(1, "rrr\n", 4);
 	}
 }
