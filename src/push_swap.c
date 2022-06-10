@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 15:56:14 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/10 16:04:17 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/10 20:04:54 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,14 @@ int		main(int argc, char **argv)
 		push_swap(&a, &b);
 	}
 	else
-	{
-		free(tab);
-		printf("Error\n");
-	}
-
+		write(2, "Error\n", 6);
+	free(tab);
 	// TESTING
-	display_stack(&a);
-	sort_five(&a, &b);
-	printf("SORTED STACK:\n");
-	display_stack(&a);
+	if (argc == 4)
+		sort_three(&a, &b);
+	else if (argc == 6)
+		sort_five(&a, &b);
+	clean_stack(&a);
 	// sort_three(&a, &b);
 	// display_stack(&a);
 	

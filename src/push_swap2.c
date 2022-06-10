@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 14:27:35 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/10 19:20:43 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/10 19:37:32 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,28 +58,28 @@ int	stack_min_index(t_stack *s)
 
 void	sort_three(t_stack *a, t_stack *b)
 {
-	if ((a->first->num < a->first->next->num) && \
-		(a->first->next->num < a->first->next->next->num))
+	if (a->first && (a->first->num < a->first->next->num) 
+		&& (a->first->next->num < a->first->next->next->num))
 		return ;
-	if ((a->first->num > a->first->next->num) && \
-		(a->first->next->num > a->first->next->next->num))
+	if (a->first && (a->first->num > a->first->next->num) 
+		&& (a->first->next->num > a->first->next->next->num))
 	{
 		rotate(a, b, 0);
 		swap(a, b, 0);
 		return ;
 	}
-	if ((a->first->num < a->first->next->next->num) && \
-		(a->first->next->num > a->first->num))
+	if (a->first && (a->first->num < a->first->next->next->num)
+		&& (a->first->next->num > a->first->num))
 	{
 		reverse_rotate(a, b, 0);
 		swap(a, b, 0);
 		return ;
 	}
-	if (a->first->next->next->num < a->first->num)
+	if (a->first && (a->first->next->next->num < a->first->num))
 		reverse_rotate(a, b, 0);
-	if (a->first->next->next->num < a->first->num)
+	if (a->first && a->first->next->next->num < a->first->num)
 		reverse_rotate(a, b, 0);
-	if (a->first->num > a->first->next->num)
+	if (a->first && a->first->num > a->first->next->num)
 		swap(a, b, 0);
 }
 

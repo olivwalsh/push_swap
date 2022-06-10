@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 15:34:09 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/10 18:25:32 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/10 19:58:44 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,6 @@ int			stack_size(t_stack *s);
 void		push_swap(t_stack *a, t_stack *b);
 void		sort_three(t_stack *a, t_stack *b);
 void		sort_five(t_stack *a, t_stack *b);
+void		clean_stack(t_stack *s);
 
 #endif

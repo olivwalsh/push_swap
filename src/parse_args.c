@@ -6,22 +6,22 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 16:26:31 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/09 14:57:59 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/10 20:04:13 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-int	check_duplicates(int *tab)
+static int	check_duplicates(int *tab, int size)
 {
 	int	i;
 	int	j;
 	
 	i = 0;
-	while (tab[i])
+	while (i < size)
 	{
 		j = i + 1;
-		while (tab[j])
+		while (j < size)
 		{
 			if (tab[i] == tab[j])
 				return (0);
@@ -45,7 +45,7 @@ int	fill_stack(int size, char **argv, int **tab)
 		tab[0][i] = ft_atoi(argv[i]);
 		i++;
 	}
-	return (check_duplicates(*tab));
+	return (check_duplicates(*tab, size));
 }
 
 int	check_args(int argc, char **argv, int *size)
