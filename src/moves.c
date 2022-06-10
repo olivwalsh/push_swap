@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 16:06:27 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/09 20:03:25 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/10 11:42:57 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,17 +158,17 @@ void	rotate_reverse(t_stack *a, t_stack *b, int i)
 	if (i == 0)
 	{
 		reverse_rotate_s(a);
-		write(1, "rra\n", 3);
+		write(1, "rra\n", 4);
 	}
 	else if (i == 1)
 	{
 		reverse_rotate_s(b);
-		write(1, "rrb\n", 3);
+		write(1, "rrb\n", 4);
 	}
 	else if (i == 2)
 	{
 		reverse_rotate_s(a);
 		rotate_s(b);
-		write(1, "rrr\n", 3);
+		write(1, "rrr\n", 4);
 	}
 }
