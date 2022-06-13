@@ -11,10 +11,10 @@ CFLAGS = -Wall -Wextra -Werror -g
 MEM = -fsanitize=address
 
 SRC =	src/moves.c \
-		src/push_swap.c \
+		src/main.c \
 		src/parse_args.c \
 		src/init.c \
-		src/push_swap2.c \
+		src/push_swap.c \
 		src/tools.c \
 
 OBJDIR = objs

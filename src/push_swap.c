@@ -1,55 +1,129 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   push_swap2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/06 15:56:14 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/10 20:04:54 by owalsh           ###   ########.fr       */
+/*   Created: 2022/06/09 14:27:35 by owalsh            #+#    #+#             */
+/*   Updated: 2022/06/10 19:37:32 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void	push_swap(t_stack *a, t_stack *b)
+int	stack_size(t_stack *s)
 {
-	int	size;
+	t_number	*ptr;
+	int			size;
 
-	size = stack_size(a);
-	if (size < 3)
-		write(1, "Error\n", 6);
-	else if (size == 3)
-		sort_three(a, b);
-	
+	size = 0;
+	if (s && s->first)
+	{
+		ptr = s->first;
+		while (ptr)
+		{
+			ptr = ptr->next;
+			size++;
+		}
+	}
+	return (size);
 }
 
-int		main(int argc, char **argv)
+int	stack_min_index(t_stack *s)
 {
-	t_stack 	a;
-	t_stack 	b;
-	int		*tab;
-	int		size;
-	
-	ft_bzero(&a, sizeof(t_stack));
-	ft_bzero(&b, sizeof(t_stack));
-	tab = NULL;
-	if (check_args(argc, argv, &size) && fill_stack(size, ++argv, &tab))
+	t_number	*ptr;
+	int			min;
+	int			i;
+
+	i = 0;
+	ptr = s->first;
+	min = ptr->num;
+	while (ptr)
 	{
-		initialize(&a, &tab, size);
-		push_swap(&a, &b);
+		if (ptr->num < min)
+			min = ptr->num;
+		ptr = ptr->next;
 	}
-	else
-		write(2, "Error\n", 6);
-	free(tab);
-	// TESTING
-	if (argc == 4)
-		sort_three(&a, &b);
-	else if (argc == 6)
-		sort_five(&a, &b);
-	clean_stack(&a);
-	// sort_three(&a, &b);
-	// display_stack(&a);
+	ptr = s->first;
+	while (ptr)
+	{
+		if (ptr->num == min)
+			return (i);
+		i++;
+		ptr = ptr->next;
+	}
+	return (-1);
+}
+
+void	sort_three(t_stack *a, t_stack *b)
+{
+	if (a->first && (a->first->num < a->first->next->num) 
+		&& (a->first->next->num < a->first->next->next->num))
+		return ;
+	if (a->first && (a->first->num > a->first->next->num) 
+		&& (a->first->next->num > a->first->next->next->num))
+	{
+		rotate(a, b, 0);
+		swap(a, b, 0);
+		return ;
+	}
+	if (a->first && (a->first->num < a->first->next->next->num)
+		&& (a->first->next->num > a->first->num))
+	{
+		reverse_rotate(a, b, 0);
+		swap(a, b, 0);
+		return ;
+	}
+	if (a->first && (a->first->next->next->num < a->first->num))
+		reverse_rotate(a, b, 0);
+	if (a->first && a->first->next->next->num < a->first->num)
+		reverse_rotate(a, b, 0);
+	if (a->first && a->first->num > a->first->next->num)
+		swap(a, b, 0);
+}
+
+void	min_after_mid(t_stack *a, t_stack *b, int min, int mid)
+{
+	t_number	*ptr;
+
+	ptr = a->first;
+	while (min >= mid && min < stack_size(a))
+	{
+		reverse_rotate(a, b, 0);
+		min++;
+	}
+	push_b(a, b);
+}
+
+void	sort_five(t_stack *a, t_stack *b)
+{
+	int			min;
+	int			mid;
 	
-	return (0);
+	min = stack_min_index(a);
+	mid = (stack_size(a) / 2);
+	if (min >= mid)
+		min_after_mid(a, b, min, mid);
+	else
+	{
+		if (min == 1)
+			swap(a, b, 0);
+		push_b(a, b);
+	}
+	min = stack_min_index(a);
+	mid = (stack_size(a) / 2) + 1;
+	if (min >= mid)
+		min_after_mid(a, b, min, mid);
+	else
+	{
+		if (min == 1)
+			swap(a, b, 0);
+		push_b(a, b);
+	}
+	sort_three(a, b);
+	if (b->first->num < b->first->next->num)
+		swap(a, b, 1);
+	push_a(a, b);
+	push_a(a, b);
 }
