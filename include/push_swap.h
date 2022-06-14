@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 15:34:09 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/10 19:58:44 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/14 14:44:46 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,25 +32,27 @@ typedef struct s_stack
 	int		size;	
 }			t_stack;
 
-void		initialize(t_stack *a, int **tab, int size);
+void		bubble_sort(int **tab, int size);
 int			check_args(int argc, char **argv, int *size);
+void		clean_stack(t_stack *s);
+void		display_stack(t_stack *s);
 int			fill_stack(int size, char **argv, int **tab);
+void		initialize(t_stack *a, int **tab, int size);
 t_number	*new_number(int num);
-void		stack_add_back(t_stack **stack, t_number *new);
-t_number	*stack_last(t_number *number);
+void		presort(t_stack *a, int *tab, int size);
 void		push_a(t_stack *a, t_stack *b);
 void		push_b(t_stack *a, t_stack *b);
-void		display_stack(t_stack *s);
-void		swap_s(t_stack *b);
-void		swap(t_stack *a, t_stack *b, int i);
+void		push_swap(t_stack *a, t_stack *b, int *tab);
+void		reverse_rotate(t_stack *a, t_stack *b, int i);
+void		reverse_rotate_s(t_stack *b);
 void		rotate_s(t_stack *b);
 void		rotate(t_stack *a, t_stack *b, int i);
-void		reverse_rotate_s(t_stack *b);
-void		reverse_rotate(t_stack *a, t_stack *b, int i);
-int			stack_size(t_stack *s);
-void		push_swap(t_stack *a, t_stack *b);
-void		sort_three(t_stack *a, t_stack *b);
 void		sort_five(t_stack *a, t_stack *b);
-void		clean_stack(t_stack *s);
+void		sort_three(t_stack *a, t_stack *b);
+void		stack_add_back(t_stack **stack, t_number *new);
+t_number	*stack_last(t_number *number);
+int			stack_size(t_stack *s);
+void		swap(t_stack *a, t_stack *b, int i);
+void		swap_s(t_stack *b);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 19:07:31 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/14 12:45:38 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/14 14:48:28 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	display_stack(t_stack *s)
 	ptr = s->first;
 	while (ptr)
 	{
-		printf("ptr->num = %d\n", ptr->num);
+		printf("ptr->num = %d ptr->index = %d\n", ptr->num, ptr->from_index);
 		ptr = ptr->next;
 	}
 }

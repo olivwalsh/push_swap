@@ -6,21 +6,27 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 15:56:14 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/14 12:45:47 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/14 15:24:18 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push_swap(t_stack *a, t_stack *b)
+void	push_swap(t_stack *a, t_stack *b, int *tab)
 {
 	int	size;
-
+	
 	size = stack_size(a);
 	if (size < 3)
 		write(1, "Error\n", 6);
 	else if (size == 3)
 		sort_three(a, b);
+	else if (size == 5)
+		sort_five(a, b);
+	else if (size > 5 && size <= 100)
+	{
+		presort(a, tab, size);
+	}
 	
 }
 
@@ -37,19 +43,17 @@ int		main(int argc, char **argv)
 	if (check_args(argc, argv, &size) && fill_stack(size, ++argv, &tab))
 	{
 		initialize(&a, &tab, size);
-		push_swap(&a, &b);
+		push_swap(&a, &b, tab);
 	}
 	else
 		write(2, "Error\n", 6);
 	free(tab);
 	// TESTING
-	if (argc == 4)
-		sort_three(&a, &b);
-	else if (argc == 6)
-		sort_five(&a, &b);
+	
+	display_stack(&a);
 	clean_stack(&a);
 	// sort_three(&a, &b);
-	// display_stack(&a);
+	
 	
 	return (0);
 }
