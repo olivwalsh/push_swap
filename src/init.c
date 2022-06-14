@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 19:07:31 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/14 14:48:28 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/14 21:46:45 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,9 @@ t_number	*new_number(int num)
 	new->num  = num;
 	new->next = NULL;
 	new->previous = NULL;
-	new->from_index = -1;
-	new->to_index = -1;
+	new->index = -1;
+	new->index_a = -1;
+	new->index_b = -1;
 	return (new);
 }
 
@@ -62,16 +63,4 @@ void	initialize(t_stack *a, int **tab, int size)
 		i++;
 	}
 	a->size = i;
-}
-
-void	display_stack(t_stack *s)
-{
-	t_number	*ptr;
-
-	ptr = s->first;
-	while (ptr)
-	{
-		printf("ptr->num = %d ptr->index = %d\n", ptr->num, ptr->from_index);
-		ptr = ptr->next;
-	}
 }

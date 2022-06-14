@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 15:56:14 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/14 15:24:18 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/14 21:49:48 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ int		main(int argc, char **argv)
 	free(tab);
 	// TESTING
 	
-	display_stack(&a);
-	clean_stack(&a);
+	//display_stack(a);
+	clean_stack(a.first);
 	// sort_three(&a, &b);
 	
 	

@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tools.c                                            :+:      :+:    :+:   */
+/*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/10 19:57:42 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/14 21:40:48 by owalsh           ###   ########.fr       */
+/*   Created: 2022/06/14 21:46:35 by owalsh            #+#    #+#             */
+/*   Updated: 2022/06/14 21:50:15 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	clean_stack(t_number *n)
+void	display_stack(t_stack s)
 {
-	t_number	*next;
-	t_number	*tmp;
+	t_number	*ptr;
 
-	tmp = n;
-	while (tmp)
+	ptr = s.first;
+	while (ptr)
 	{
-		//printf("curr = %p\t nxt = %p\n", tmp, tmp->next);
-		next = tmp->next;
-		free(tmp);
-		tmp = next;
+		printf("ptr->num = %d ptr->index = %d\n", ptr->num, ptr->index);
+		// printf("curr = %p\t nxt = %p\n", ptr, ptr->next);
+		ptr = ptr->next;
 	}
-//	free(ptr);
 }

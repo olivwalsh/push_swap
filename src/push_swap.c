@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 14:27:35 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/14 12:45:56 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/14 21:50:46 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,11 @@ int	stack_min_index(t_stack *s)
 
 void	sort_three(t_stack *a, t_stack *b)
 {
-	if (a->first && (a->first->num < a->first->next->num) 
+	display_stack(*a);
+	if (a->first && (a->first->num < a->first->next->num)
 		&& (a->first->next->num < a->first->next->next->num))
 		return ;
-	if (a->first && (a->first->num > a->first->next->num) 
+	if (a->first && (a->first->num > a->first->next->num)
 		&& (a->first->next->num > a->first->next->next->num))
 	{
 		rotate(a, b, 0);
@@ -100,7 +101,7 @@ void	sort_five(t_stack *a, t_stack *b)
 {
 	int			min;
 	int			mid;
-	
+
 	min = stack_min_index(a);
 	mid = (stack_size(a) / 2);
 	if (min >= mid)
@@ -112,7 +113,7 @@ void	sort_five(t_stack *a, t_stack *b)
 		push_b(a, b);
 	}
 	min = stack_min_index(a);
-	mid = (stack_size(a) / 2) + 1;
+	mid = (stack_size(a) / 2);
 	if (min >= mid)
 		min_after_mid(a, b, min, mid);
 	else

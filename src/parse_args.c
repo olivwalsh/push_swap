@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 16:26:31 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/14 12:45:31 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/14 20:56:26 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,12 @@ int	check_args(int argc, char **argv, int *size)
 		return (0);
 	while (argv[i])
 	{
-		j = 0;
+		if (argv[i][0] == '-')
+				j = 1;
+		else
+			j = 0;
 		while (argv[i][j])
 		{
-			if (argv[i][0] == '-')
-				j++;
 			if (!ft_isdigit(argv[i][j]))
 				return (0);
 			j++;

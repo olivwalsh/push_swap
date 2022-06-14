@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 13:00:30 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/14 15:35:41 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/14 20:30:09 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,16 @@ void	presort(t_stack *a, int *tab, int size)
 	if (a && a->first)
 		ptr = a->first;
 	i = 0;
-	while (i < size)
+	while (ptr && i < size)
 	{
-		printf("ptr->num = %d\ntab[%d] = %d\n", ptr->num, i, tab[i]);
 		if (ptr->num == tab[i])
 		{
-			printf("ptr->num = %d, i = %d\n", ptr->num, i);
-			ptr->from_index = i;
-			printf("ptr->index = %d\n", ptr->from_index);
+			ptr->index = i + 1;
 			ptr = ptr->next;
 			i = 0;
 		}
-		i++;
+		else
+			i++;
 	}
 }
 

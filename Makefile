@@ -8,7 +8,7 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror -g
 
-MEM = -fsanitize=address
+#MEM = -fsanitize=address
 
 SRC =	src/moves.c \
 		src/main.c \
@@ -16,7 +16,8 @@ SRC =	src/moves.c \
 		src/init.c \
 		src/push_swap.c \
 		src/tools.c \
-		src/presort.c 
+		src/presort.c \
+		src/display.c 
 
 OBJDIR = objs
 

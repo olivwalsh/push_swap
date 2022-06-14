@@ -6,36 +6,37 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 15:34:09 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/14 14:44:46 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/14 21:48:10 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
-#define PUSH_SWAP_H
+# define PUSH_SWAP_H
 
-#include "libft/libft.h"
-#include <stdio.h>
-#include <unistd.h>
+# include "libft/libft.h"
+# include <stdio.h>
+# include <unistd.h>
 
 typedef struct s_number
 {
 	struct s_number	*previous;
 	struct s_number	*next;
 	int				num;
-	int				from_index;
-	int				to_index;
+	int				index;
+	int				index_a;
+	int				index_b;
 }				t_number;
 
 typedef struct s_stack
 {
-	t_number *first;
-	int		size;	
+	t_number	*first;
+	int			size;
 }			t_stack;
 
 void		bubble_sort(int **tab, int size);
 int			check_args(int argc, char **argv, int *size);
-void		clean_stack(t_stack *s);
-void		display_stack(t_stack *s);
+void		clean_stack(t_number *n);
+void		display_stack(t_stack s);
 int			fill_stack(int size, char **argv, int **tab);
 void		initialize(t_stack *a, int **tab, int size);
 t_number	*new_number(int num);
