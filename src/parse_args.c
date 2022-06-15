@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 16:26:31 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/14 20:56:26 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/15 14:41:20 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	check_duplicates(int *tab, int size)
 	return (1);	
 }
 
-int	fill_stack(int size, char **argv, int **tab)
+int	fill_tab(int size, char **argv, int **tab)
 {
 	int	i;
 	

@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 16:06:27 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/15 12:19:43 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/15 21:42:45 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,24 +66,24 @@ void	push_b(t_number *a, t_number *b)
 	}
 }
 
-void	swap_s(t_number *b)
+void	swap_s(t_number **head)
 {
-	t_number	*first;
-	t_number	*second;
-	
-	if (b &&  b->next)
-	{
-		first = b;
-		second = b->next;
-		b = second;
-		first->next = second->next;
-		b->next = first;
-		second->previous = NULL;
-		first->previous = second;
-	}
+	t_number	*tmp;
+	t_number	*next;
+
+	if (!(*head) || !((*head)->next))
+		return ;
+	tmp = *head;
+	next = (*head)->next;
+	tmp->previous = next;
+	next->next->previous = tmp;
+	tmp->next = next->next;
+	next->previous = NULL;
+	next->next = *head;
+	*head = next;	
 }
 
-void	swap(t_number *a, t_number *b, int i)
+void	swap(t_number **a, t_number **b, int i)
 {
 	if (i == 0)
 	{
@@ -103,24 +103,23 @@ void	swap(t_number *a, t_number *b, int i)
 	}
 }
 
-void	rotate_s(t_number *s)
+void	rotate_s(t_number **head)
 {
-	t_number	*head;
+	t_number	*tmp;
 	t_number	*tail;
 
-	if (s)
-	{
-		head = s;
-		tail = stack_last(head);
-		tail->next = head;
-		head->previous = tail;
-		s = head->next;
-		s->previous = NULL;
-		head->next = NULL;
-	}
+	if (!(*head) || !((*head)->next))
+		return ;
+	tmp = *head;
+	tail = stack_last(head);
+	tmp->previous = tail;
+	tmp->next->previous = NULL;
+	*head = tmp->next->previous;
+	tmp->next = NULL;
+	tail->next = tmp;
 }
 
-void	rotate(t_number *a, t_number *b, int i)
+void	rotate(t_number **a, t_number **b, int i)
 {
 	if (i == 0)
 	{
@@ -140,24 +139,24 @@ void	rotate(t_number *a, t_number *b, int i)
 	}
 }
 
-void	reverse_rotate_s(t_number *s)
+void	reverse_rotate_s(t_number **head)
 {
-	t_number	*head;
 	t_number	*tail;
-
-	if (s && s->next)
+	t_number	*ptr;
+	
+	ptr = *head;
+	if (ptr && ptr->next)
 	{
-		head = s;
-		tail = stack_last(s);
+		tail = stack_last(ptr);
 		tail->previous->next = NULL;
-		s = tail;
 		tail->previous = NULL;
-		tail->next = head;
-		head->previous = s;
+		tail->next = ptr;
+		ptr->previous = tail;
+		*head = tail;
 	}
 }
 
-void	reverse_rotate(t_number *a, t_number *b, int i)
+void	reverse_rotate(t_number **a, t_number **b, int i)
 {
 	if (i == 0)
 	{
