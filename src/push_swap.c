@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 14:27:35 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/14 21:50:46 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/15 12:24:25 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	stack_min_index(t_stack *s)
 
 void	sort_three(t_stack *a, t_stack *b)
 {
-	display_stack(*a);
+	//display_stack(*a);
 	if (a->first && (a->first->num < a->first->next->num)
 		&& (a->first->next->num < a->first->next->next->num))
 		return ;

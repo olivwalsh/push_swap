@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 16:06:27 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/14 21:44:11 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/15 12:23:35 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	push_a(t_stack *a, t_stack *b)
 	if (b && b->first)
 	{
 		new = b->first;
-		
+		new->previous = NULL;
 		b->first = b->first->next;
 		if (a->first)
 		{
@@ -28,7 +28,6 @@ void	push_a(t_stack *a, t_stack *b)
 			a_first->previous = new;
 			a->first = new;
 			a->first->next = a_first;
-			
 		}
 		else
 		{
@@ -48,6 +47,7 @@ void	push_b(t_stack *a, t_stack *b)
 	if (a && a->first)
 	{
 		new = a->first;
+		new->previous = NULL;
 		a->first = a->first->next;
 		if (b->first)
 		{
