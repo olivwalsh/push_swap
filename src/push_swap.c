@@ -6,21 +6,21 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 14:27:35 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/14 21:50:46 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/15 12:19:43 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	stack_size(t_stack *s)
+int	stack_size(t_number *s)
 {
 	t_number	*ptr;
 	int			size;
 
 	size = 0;
-	if (s && s->first)
+	if (s && s)
 	{
-		ptr = s->first;
+		ptr = s;
 		while (ptr)
 		{
 			ptr = ptr->next;
@@ -30,14 +30,14 @@ int	stack_size(t_stack *s)
 	return (size);
 }
 
-int	stack_min_index(t_stack *s)
+int	stack_min_index(t_number *s)
 {
 	t_number	*ptr;
 	int			min;
 	int			i;
 
 	i = 0;
-	ptr = s->first;
+	ptr = s;
 	min = ptr->num;
 	while (ptr)
 	{
@@ -45,7 +45,7 @@ int	stack_min_index(t_stack *s)
 			min = ptr->num;
 		ptr = ptr->next;
 	}
-	ptr = s->first;
+	ptr = s;
 	while (ptr)
 	{
 		if (ptr->num == min)
@@ -56,39 +56,39 @@ int	stack_min_index(t_stack *s)
 	return (-1);
 }
 
-void	sort_three(t_stack *a, t_stack *b)
+void	sort_three(t_number *a, t_number *b)
 {
 	display_stack(*a);
-	if (a->first && (a->first->num < a->first->next->num)
-		&& (a->first->next->num < a->first->next->next->num))
+	if (a && (a->num < a->next->num)
+		&& (a->next->num < a->next->next->num))
 		return ;
-	if (a->first && (a->first->num > a->first->next->num)
-		&& (a->first->next->num > a->first->next->next->num))
+	if (a && (a->num > a->next->num)
+		&& (a->next->num > a->next->next->num))
 	{
 		rotate(a, b, 0);
 		swap(a, b, 0);
 		return ;
 	}
-	if (a->first && (a->first->num < a->first->next->next->num)
-		&& (a->first->next->num > a->first->num))
+	if (a && (a->num < a->next->next->num)
+		&& (a->next->num > a->num))
 	{
 		reverse_rotate(a, b, 0);
 		swap(a, b, 0);
 		return ;
 	}
-	if (a->first && (a->first->next->next->num < a->first->num))
+	if (a && (a->next->next->num < a->num))
 		reverse_rotate(a, b, 0);
-	if (a->first && a->first->next->next->num < a->first->num)
+	if (a && a->next->next->num < a->num)
 		reverse_rotate(a, b, 0);
-	if (a->first && a->first->num > a->first->next->num)
+	if (a && a->num > a->next->num)
 		swap(a, b, 0);
 }
 
-void	min_after_mid(t_stack *a, t_stack *b, int min, int mid)
+void	min_after_mid(t_number *a, t_number *b, int min, int mid)
 {
 	t_number	*ptr;
 
-	ptr = a->first;
+	ptr = a;
 	while (min >= mid && min < stack_size(a))
 	{
 		reverse_rotate(a, b, 0);
@@ -97,7 +97,7 @@ void	min_after_mid(t_stack *a, t_stack *b, int min, int mid)
 	push_b(a, b);
 }
 
-void	sort_five(t_stack *a, t_stack *b)
+void	sort_five(t_number *a, t_number *b)
 {
 	int			min;
 	int			mid;
@@ -123,7 +123,7 @@ void	sort_five(t_stack *a, t_stack *b)
 		push_b(a, b);
 	}
 	sort_three(a, b);
-	if (b->first->num < b->first->next->num)
+	if (b->num < b->next->num)
 		swap(a, b, 1);
 	push_a(a, b);
 	push_a(a, b);

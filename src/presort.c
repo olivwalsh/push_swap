@@ -6,21 +6,21 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 13:00:30 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/14 20:30:09 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/15 12:19:43 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	presort(t_stack *a, int *tab, int size)
+void	presort(t_number *a, int *tab, int size)
 {
 	t_number	*ptr;
 	int			i;
 	
 	bubble_sort(&tab, size);
 	ptr = NULL;
-	if (a && a->first)
-		ptr = a->first;
+	if (a && a)
+		ptr = a;
 	i = 0;
 	while (ptr && i < size)
 	{
