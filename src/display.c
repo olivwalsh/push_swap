@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 21:46:35 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/15 19:52:25 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/17 20:02:01 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	display_stack(t_number *head)
 		printf("nothing to be displayed\n");
 	while (ptr)
 	{
-		printf("ptr->num = %d\t\tptr->index = %d\n", ptr->num, ptr->index);
-		printf("prev = %p\tcurr = %p\tnext = %p\n", ptr->previous, ptr, ptr->next);
+		printf("ptr->num = %d\t\tptr->index = %d\t\tptr->cost = %d\n", ptr->num, ptr->index, ptr->cost);
+		printf("prev = %p\t\tcurr = %p\t\tnext = %p\n", ptr->previous, ptr, ptr->next);
 		printf("- - - - - - - - - - - - - - - - - \n");
 		ptr = ptr->next;
 	}

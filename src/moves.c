@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 16:06:27 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/17 15:15:18 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/17 20:03:40 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	push_a(t_number **head_a, t_number **head_b)
 	if (*head_b)
 	{
 		new = *head_b;
-		
 		*head_b = (*head_b)->next;
+		(*head_b)->previous = NULL;
 		if (*head_a)
 		{
 			a_first = *head_a;
@@ -29,7 +29,6 @@ void	push_a(t_number **head_a, t_number **head_b)
 			*head_a = new;
 			(*head_a)->next = a_first;
 			(*head_a)->previous = NULL;
-			
 		}
 		else
 		{
@@ -50,6 +49,7 @@ void	push_b(t_number **head_a, t_number **head_b)
 	{
 		new = *head_a;
 		*head_a = (*head_a)->next;
+		(*head_a)->previous = NULL;
 		if (*head_b)
 		{
 			b_first = *head_b;
@@ -82,7 +82,7 @@ void	swap_s(t_number **head)
 	tmp->next = next->next;
 	next->previous = NULL;
 	next->next = *head;
-	*head = next;	
+	*head = next;
 }
 
 void	swap(t_number **a, t_number **b, int i)
@@ -145,7 +145,7 @@ void	reverse_rotate_s(t_number **head)
 {
 	t_number	*tail;
 	t_number	*ptr;
-	
+
 	ptr = *head;
 	if (ptr && ptr->next)
 	{

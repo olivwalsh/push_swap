@@ -17,7 +17,8 @@ SRC =	src/moves.c \
 		src/push_swap.c \
 		src/tools.c \
 		src/presort.c \
-		src/display.c 
+		src/display.c \
+		src/move_cost.c
 
 OBJDIR = objs
 

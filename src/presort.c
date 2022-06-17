@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 13:00:30 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/15 12:19:43 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/17 18:48:05 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	presort(t_number *a, int *tab, int size)
 {
 	t_number	*ptr;
 	int			i;
-	
+
 	bubble_sort(&tab, size);
 	ptr = NULL;
 	if (a && a)
@@ -40,7 +40,7 @@ void	bubble_sort(int **tab, int size)
 	int	i;
 	int	j;
 	int	tmp;
-	
+
 	i = 0;
 	while (i + 1 < size)
 	{
