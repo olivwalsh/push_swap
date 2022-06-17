@@ -6,61 +6,63 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 16:06:27 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/17 12:11:19 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/17 15:15:18 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push_a(t_number *a, t_number *b)
+void	push_a(t_number **head_a, t_number **head_b)
 {
 	t_number	*a_first;
 	t_number	*new;
 
-	if (b)
+	if (*head_b)
 	{
-		new = b;
+		new = *head_b;
 		
-		b = b->next;
-		if (a)
+		*head_b = (*head_b)->next;
+		if (*head_a)
 		{
-			a_first = a;
+			a_first = *head_a;
 			a_first->previous = new;
-			a = new;
-			a->next = a_first;
+			*head_a = new;
+			(*head_a)->next = a_first;
+			(*head_a)->previous = NULL;
 			
 		}
 		else
 		{
-			a = new;
-			a->next = NULL;
-			a->previous = NULL;
+			(*head_a) = new;
+			(*head_a)->next = NULL;
+			(*head_a)->previous = NULL;
 		}
 		write(1, "pa\n", 3);
 	}
 }
 
-void	push_b(t_number *a, t_number *b)
+void	push_b(t_number **head_a, t_number **head_b)
 {
 	t_number	*b_first;
 	t_number	*new;
 
-	if (a && a)
+	if (*head_a)
 	{
-		new = a;
-		a = a->next;
-		if (b)
+		new = *head_a;
+		*head_a = (*head_a)->next;
+		if (*head_b)
 		{
-			b_first = b;
+			b_first = *head_b;
 			b_first->previous = new;
-			b = new;
+			*head_b = new;
 			new->next = b_first;
+			new->previous = NULL;
 		}
 		else
 		{
-			b = new;
-			b->next = NULL;
-			b->previous = NULL;
+			*head_b = new;
+			(*head_b)->next = NULL;
+			(*head_b)->previous = NULL;
 		}
 		write(1, "pb\n", 3);
 	}
@@ -110,13 +112,13 @@ void	rotate_s(t_number **head)
 
 	if (!(*head) || !((*head)->next))
 		return ;
-	tmp = *head;
 	tail = stack_last(*head);
-	tmp->previous = tail;
-	tmp->next->previous = NULL;
-	*head = tmp->next->previous;
-	tmp->next = NULL;
-	tail->next = tmp;
+	tail->next = *head;
+	(*head)->previous = tail;
+	tmp = (*head)->next;
+	(*head)->next = NULL;
+	tmp->previous = NULL;
+	*head = tmp;
 }
 
 void	rotate(t_number **a, t_number **b, int i)
@@ -158,8 +160,6 @@ void	reverse_rotate_s(t_number **head)
 
 void	reverse_rotate(t_number **a, t_number **b, int i)
 {
-	printf("in fct rra\n");
-	display_stack(*a);
 	if (i == 0)
 	{
 		reverse_rotate_s(a);

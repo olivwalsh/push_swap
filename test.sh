@@ -229,6 +229,7 @@ NTESTS=5
 
 count=0
 avg=0
+
 echo "${lblue}3 stack -- running ${NTESTS} tests ${reset}"
 while [ "$count" -le $NTESTS ]
 do
