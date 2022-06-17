@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 16:06:27 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/15 21:42:45 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/17 12:11:19 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void	rotate_s(t_number **head)
 	if (!(*head) || !((*head)->next))
 		return ;
 	tmp = *head;
-	tail = stack_last(head);
+	tail = stack_last(*head);
 	tmp->previous = tail;
 	tmp->next->previous = NULL;
 	*head = tmp->next->previous;
@@ -158,6 +158,8 @@ void	reverse_rotate_s(t_number **head)
 
 void	reverse_rotate(t_number **a, t_number **b, int i)
 {
+	printf("in fct rra\n");
+	display_stack(*a);
 	if (i == 0)
 	{
 		reverse_rotate_s(a);

@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 15:34:09 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/15 18:32:34 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/17 12:13:21 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ t_number	*new_number(int num);
 void		presort(t_number *a, int *tab, int size);
 void		push_a(t_number *a, t_number *b);
 void		push_b(t_number *a, t_number *b);
-void		push_swap(t_number *a, t_number *b);
+void		push_swap(t_number **a, t_number **b);
 void		reverse_rotate(t_number **a, t_number **b, int i);
 void		reverse_rotate_s(t_number **head);
-void		rotate_s(t_number *b);
-void		rotate(t_number *a, t_number *b, int i);
-void		sort_five(t_number *a, t_number *b);
-void		sort_three(t_number *a, t_number *b);
+void		rotate_s(t_number **head);
+void		rotate(t_number **a, t_number **b, int i);
+// void		sort_five(t_number **head_a, t_number **head_b);
+void		sort_three(t_number *head_a, t_number *head_b);
 void		stack_add_back(t_number **stack, t_number *new);
 t_number	*stack_last(t_number *number);
 int			stack_size(t_number *s);

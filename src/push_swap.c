@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 14:27:35 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/15 19:54:08 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/17 12:19:56 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,19 @@ void	sort_three(t_number *a, t_number *b)
 	if (a && (a->num < a->next->next->num)
 		&& (a->next->num > a->num))
 	{
+		printf("1 3 2\n");
 		reverse_rotate(&a, &b, 0);
 		swap(&a, &b, 0);
 		return ;
 	}
 	if (a && (a->next->next->num < a->num))
 		reverse_rotate(&a, &b, 0);
-	if (a && a->next->next->num < a->num)
-		reverse_rotate(&a, &b, 0);
+	printf("-------------------------\n");
+	display_stack(a);
+	// if (a && a->next->next->num < a->num)
+	// 	reverse_rotate(&a, &b, 0);
+	// printf("-------------------------\n");
+	// display_stack(a);
 	if (a && a->num > a->next->num)
 		swap(&a, &b, 0);
 }
