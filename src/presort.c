@@ -6,13 +6,13 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 13:00:30 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/17 18:48:05 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/20 09:03:29 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	presort(t_number *a, int *tab, int size)
+void	presort(t_number *a, int *tab, int size, int max)
 {
 	t_number	*ptr;
 	int			i;
@@ -27,6 +27,7 @@ void	presort(t_number *a, int *tab, int size)
 		if (ptr->num == tab[i])
 		{
 			ptr->index = i + 1;
+			ptr->max = max;
 			ptr = ptr->next;
 			i = 0;
 		}

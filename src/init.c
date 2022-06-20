@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 19:07:31 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/17 19:51:36 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/20 09:04:39 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ t_number	*new_number(int num)
 void	initialize(t_number **head_a, int **tab, int size)
 {
 	int			i;
+	int			max;
 
 	i = 0;
 	while (i < size)
@@ -62,5 +63,6 @@ void	initialize(t_number **head_a, int **tab, int size)
 		stack_add_back(head_a, new_number(tab[0][i]));
 		i++;
 	}
-	presort(*head_a, tab[0], size);
+	max = get_max(*head_a);
+	presort(*head_a, tab[0], size, max);
 }

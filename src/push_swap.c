@@ -6,55 +6,11 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 14:27:35 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/17 18:48:20 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/20 08:33:26 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	stack_size(t_number *s)
-{
-	t_number	*ptr;
-	int			size;
-
-	size = 0;
-	if (s && s->next)
-	{
-		ptr = s;
-		while (ptr)
-		{
-			ptr = ptr->next;
-			size++;
-		}
-	}
-	return (size);
-}
-
-int	stack_min_index(t_number *s)
-{
-	t_number	*ptr;
-	int			min;
-	int			i;
-
-	i = 0;
-	ptr = s;
-	min = ptr->num;
-	while (ptr)
-	{
-		if (ptr->num < min)
-			min = ptr->num;
-		ptr = ptr->next;
-	}
-	ptr = s;
-	while (ptr)
-	{
-		if (ptr->num == min)
-			return (i);
-		i++;
-		ptr = ptr->next;
-	}
-	return (-1);
-}
 
 void	sort_three(t_number **a, t_number **b)
 {
@@ -84,16 +40,16 @@ void	sort_three(t_number **a, t_number **b)
 
 void	sort_five(t_number **a, t_number **b)
 {
-	while (stack_size(*a) > 3)
+	while (get_stack_size(*a) > 3)
 	{
-		while (stack_min_index(*a) >= 2
-			&& stack_min_index(*a) < stack_size(*a))
+		while (get_min_index(*a) >= 2
+			&& get_min_index(*a) < get_stack_size(*a))
 			reverse_rotate(a, b, 0);
-		if (stack_min_index(*a) == 1)
+		if (get_min_index(*a) == 1)
 			swap(a, b, 0);
 		push_b(a, b);
 	}
 	sort_three(a, b);
-	while (stack_size(*b) > 0)
+	while (get_stack_size(*b) > 0)
 		push_a(a, b);
 }

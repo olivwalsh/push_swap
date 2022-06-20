@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 15:56:14 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/17 20:43:02 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/20 12:29:15 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,16 @@ void	push_swap(t_number **a, t_number **b)
 {
 	int	size;
 
-	size = stack_size(*a);
+	size = get_stack_size(*a);
 	if (size < 3)
 		write(1, "Error\n", 6);
 	else if (size == 3)
-		sort_three(&(*a), &(*b));
+		sort_three(a, b);
 	else if (size > 3 && size <= 5)
 		sort_five(a, b);
 	else if (size > 5 && size <= 100)
 	{
-		cost_b(a);
-		//first_sort(a, b);
-		
+		first_sort(a, b);
 	}
 }
 
@@ -52,7 +50,7 @@ int	main(int argc, char **argv)
 	// TESTING
 	printf("STACK A:\n");
 	display_stack(head_a);
-	printf("STACK B:\n");
+	printf("\n\n\nSTACK B:\n");
 	display_stack(head_b);
 	clean_stack(&head_a);
 	return (0);
