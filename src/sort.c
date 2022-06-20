@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 12:30:33 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/20 18:48:31 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/20 20:09:17 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	sort(t_number **head_a, t_number **head_b)
 
 void	final_sort_step(t_number **head_a, t_number **head_b)
 {
-	if (get_max_index(*head_a) > get_stack_size(*head_a) / 2)
+	if (get_max_index(*head_a) < get_stack_size(*head_a) / 2)
 	{
 		while (!is_sorted(*head_a))
 			rotate(head_a, head_b, 0);

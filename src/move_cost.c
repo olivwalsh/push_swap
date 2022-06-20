@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:26:06 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/20 18:56:39 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/20 20:14:06 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ void	optimize_number_moves(t_number *b)
 {
 	while (b->moves->ra > 0 && b->moves->rb > 0)
 	{
-		b->moves->rr += 1;
+		b->moves->rr++;
 		b->moves->ra--;
 		b->moves->rb--;	
 	}
 	while (b->moves->rra > 0 && b->moves->rrb > 0)
 	{
-		b->moves->rrr += 1;
+		b->moves->rrr++;
 		b->moves->rra--;
 		b->moves->rrb--;	
 	}
@@ -33,6 +33,7 @@ void	reset_indexes(t_number *head)
 {
 	while (head)
 	{
+		// ft_memset(&head->moves, 0 , sizeof(t_moves));
 		head->moves->ra = 0;
 		head->moves->rb = 0;
 		head->moves->rr = 0;
@@ -85,8 +86,10 @@ void	index_a(t_number *a, t_number *b)
 	int			min_dif;
 	int			i;
 	t_number	*head_a;
+	int			size;
 
 	head_a = a;
+	size = get_stack_size(a);
 	while (b)
 	{
 		a = head_a;
@@ -105,13 +108,19 @@ void	index_a(t_number *a, t_number *b)
 			{
 				if (b->index <= a->index)
 				{
-					b->moves->ra = i;
+					if (i > size / 2)
+						b->moves->rra = size - i;
+					else
+						b->moves->ra = i;
 					b->index_a = i;
 				}
 				else
 				{
 					b->index_a = i + 1;
-					b->moves->ra = i + 1;
+					if (i > size / 2)
+						b->moves->rra = size - (i + 1);
+					else
+						b->moves->ra = i + 1;
 				}
 				break;
 			}	
@@ -129,7 +138,7 @@ void	first_sort(t_number **head_a, t_number **head_b)
 	while (is_sorted(*head_a) == 0)
 	{
 		tail = stack_last(*head_a);
-		if ((*head_a)->index > tail->index)
+		if (((*head_a)->index > tail->index) || tail->num == tail->max)
 			rotate(head_a, head_b, 0);
 		else
 			push_b(head_a, head_b);

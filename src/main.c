@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 15:56:14 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/20 18:08:56 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/20 20:49:46 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,11 @@ void	push_swap(t_number **a, t_number **b)
 	int	size;
 
 	size = get_stack_size(*a);
-	if (size < 3)
-		write(1, "Error\n", 6);
+	if (size == 2)
+	{
+		if ((*a)->num > (*a)->next->num)
+			swap(a, b, 0);
+	}
 	else if (size == 3)
 		sort_three(a, b);
 	else if (size > 3 && size <= 5)
@@ -43,7 +46,8 @@ int	main(int argc, char **argv)
 	if (check_args(argc, argv, &size) && fill_tab(size, ++argv, &tab))
 	{
 		initialize(&head_a, &tab, size);
-		push_swap(&head_a, &head_b);
+		if (!is_sorted(head_a))
+			push_swap(&head_a, &head_b);
 	}
 	else
 		write(2, "Error\n", 6);
