@@ -6,7 +6,7 @@ NAME = push_swap
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -g -MMD -MP
 
 #MEM = -fsanitize=address
 
@@ -25,6 +25,8 @@ OBJDIR = objs
 INCDIR = include
 
 OBJ = $(addprefix ${OBJDIR}/,${SRC:.c=.o})
+
+DEPS = ${OBJS:.o=.d}
 
 INC = -I./${INCDIR}
 
@@ -57,3 +59,5 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re bonus libft
+
+-include ${DEPS}

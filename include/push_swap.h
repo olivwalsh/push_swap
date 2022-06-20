@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 15:34:09 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/20 12:23:25 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/20 14:15:16 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,16 @@
 # include <stdio.h>
 # include <unistd.h>
 
+typedef struct s_moves
+{
+	int	ra;
+	int	rb;
+	int rra;
+	int	rrb;
+	int	rr;
+	int	rrr;
+}			t_moves;
+
 typedef struct s_number
 {
 	struct s_number	*previous;
@@ -26,6 +36,7 @@ typedef struct s_number
 	int				index_a;
 	int				index_b;
 	int				cost;
+	t_moves			moves; 
 	int				max;
 }				t_number;
 
