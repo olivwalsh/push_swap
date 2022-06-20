@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 21:46:35 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/20 09:04:58 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/20 15:47:20 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,13 @@ void	display_stack(t_number *head)
 		printf("nothing to be displayed\n");
 	while (ptr)
 	{
+		printf("ptr->prev = %p\tptr = %p\tptr->next = %p\n", ptr->previous, ptr, ptr->next);
 		printf("ptr->num = %d\t\tptr->index = %d\t\tptr->index_b = %d\t\t", ptr->num, ptr->index, ptr->index_b);
 		printf("ptr->index_a = %d\t\tptr->cost = %d\t\t", ptr->index_a, ptr->cost);
-		printf("ptr->max = %d\n", ptr->max);
-		printf("ptr->prev = %p\t\tptr = %p\t\tptr->next = %p\n", ptr->previous, ptr, ptr->next);
-		printf("- - - - - - - - - - - - - - - - - \n");
+		printf("ptr->moves->ra = %d, ->rb = %d, ->rr = %d, ", ptr->moves->ra, ptr->moves->rb, ptr->moves->rr);
+		printf("rra = %d, rrb = %d, rrr = %d\n", ptr->moves->rra, ptr->moves->rrb, ptr->moves->rrr);
+		
+		printf("\n- - - - - - - - - - - - - - - - - \n");
 		ptr = ptr->next;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 19:57:42 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/20 09:57:54 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/20 18:56:26 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ void	clean_stack(t_number **head)
 	}
 }
 
-int	is_sorted(t_number **head)
+int	is_sorted(t_number *head)
 {
 	t_number	*tmp;
 
-	tmp = *head;
+	tmp = head;
 	while (tmp && tmp->next)
 	{
 		if (tmp->num > tmp->next->num)
@@ -99,7 +99,7 @@ int	get_stack_size(t_number *head)
 	int			size;
 
 	size = 0;
-	if (!head || !head->next)
+	if (!head)
 		return (0);
 	ptr = head;
 	while (ptr)

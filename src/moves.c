@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 16:06:27 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/17 20:03:40 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/20 17:50:55 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,13 @@ void	push_a(t_number **head_a, t_number **head_b)
 	if (*head_b)
 	{
 		new = *head_b;
-		*head_b = (*head_b)->next;
-		(*head_b)->previous = NULL;
+		if ((*head_b)->next)
+		{
+			*head_b = (*head_b)->next;
+			(*head_b)->previous = NULL;
+		}
+		else
+			*head_b = NULL;
 		if (*head_a)
 		{
 			a_first = *head_a;
@@ -48,8 +53,13 @@ void	push_b(t_number **head_a, t_number **head_b)
 	if (*head_a)
 	{
 		new = *head_a;
-		*head_a = (*head_a)->next;
-		(*head_a)->previous = NULL;
+		if ((*head_a)->next)
+		{
+			*head_a = (*head_a)->next;
+			(*head_a)->previous = NULL;
+		}
+		else
+			*head_a = NULL;
 		if (*head_b)
 		{
 			b_first = *head_b;

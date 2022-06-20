@@ -6,64 +6,92 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 12:30:33 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/20 13:54:50 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/20 18:48:31 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// t_number	*cheapest_to_move(t_number *head_b)
-// {
-
-// }
-
-// void	sort(t_number **head_a, t_number **head_b)
-// {
-// 	t_number	*b;
-
-// 	b = head_a;
-// 	while (!is_sorted(head_a))
-// 	{
-// 		update_move_cost(*head_a, head_b);
-// 		while (b)
-// 		{
-			
-// 		}
-// 	}
+t_number	*cheapest_to_move(t_number *head_b)
+{
+	t_number	*b;
+	int	cheapest;
 	
-// }
+	if (!head_b)
+		return (NULL);
+	cheapest = head_b->cost;
+	b = head_b;
+	while (b)
+	{
+		if (b->cost < cheapest)
+			cheapest = b->cost;
+		b = b->next;
+	}
+	b = head_b;
+	while (b)
+	{
+		if (b->cost == cheapest)
+			return (b);
+		b = b->next;
+	}
+	return (NULL);
+}
 
+void	execute_moves(t_number **head_a, t_number **head_b, t_number *to_move)
+{
+	while (to_move->moves->rr)
+	{
+		rotate(head_a, head_b, 2);
+		to_move->moves->rr--;
+	}
+	while (to_move->moves->rrr)
+	{
+		reverse_rotate(head_a, head_b, 2);
+		to_move->moves->rrr--;
+	}
+	while (to_move->moves->ra)
+	{
+		rotate(head_a, head_b, 0);
+		to_move->moves->ra--;
+	}
+	while (to_move->moves->rb)
+	{
+		rotate(head_a, head_b, 1);
+		to_move->moves->rb--;
+	}
+	while (to_move->moves->rra)
+	{
+		reverse_rotate(head_a, head_b, 0);
+		to_move->moves->rra--;
+	}
+	while (to_move->moves->rrb)
+	{
+		reverse_rotate(head_a, head_b, 1);
+		to_move->moves->rrb--;
+	}
+}
 
-/*
-find moves for each element
+void	sort(t_number **head_a, t_number **head_b)
+{
+	while (get_stack_size(*head_b))
+	{
+		update_move_cost(*head_a, *head_b);
+		execute_moves(head_a, head_b, cheapest_to_move(*head_b));
+		push_a(head_a, head_b);
+	}
+	final_sort_step(head_a, head_b);
+}
 
-int ra (3)
-int rb (2)
-int rra (0)
-int rrb (0)
-
-optimize moves by doing rr for ra-rb
-						rrr for rra rrb
-
-int rr 		(2) 
-int rrr     (0)
-
-count move cost again
-
-int ra (1)
-int rb (0)
-int rra (0)
-int rrb (0)
-int rr  (2)
-int rrr (0)
-
-while (rr--)
-	move_rr(a, b);
-while (rrr-)
-	move_rrr(a ,b);
-while (ra--)
-	move_r(a)
-while (rb--)
-	move_r(b);
-
-*/
+void	final_sort_step(t_number **head_a, t_number **head_b)
+{
+	if (get_max_index(*head_a) > get_stack_size(*head_a) / 2)
+	{
+		while (!is_sorted(*head_a))
+			rotate(head_a, head_b, 0);
+	}	
+	else
+	{
+		while (!is_sorted(*head_a))
+			reverse_rotate(head_a, head_b, 0);
+	}
+}

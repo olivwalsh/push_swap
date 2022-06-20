@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 14:27:35 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/20 08:33:26 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/20 18:48:01 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	sort_three(t_number **a, t_number **b)
 {
-	if (is_sorted(a))
+	if (is_sorted(*a))
 		return ;
 	if (a && ((*a)->num > (*a)->next->num)
 		&& ((*a)->next->num > (*a)->next->next->num))
