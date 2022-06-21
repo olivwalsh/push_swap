@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 12:30:33 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/20 20:09:17 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/21 12:40:18 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 t_number	*cheapest_to_move(t_number *head_b)
 {
 	t_number	*b;
-	int	cheapest;
-	
+	int			cheapest;
+
 	if (!head_b)
 		return (NULL);
 	cheapest = head_b->cost;
@@ -37,18 +37,23 @@ t_number	*cheapest_to_move(t_number *head_b)
 	return (NULL);
 }
 
-void	execute_moves(t_number **head_a, t_number **head_b, t_number *to_move)
+static void	execute_optimize(t_number **a, t_number **b, t_number *to_move)
 {
 	while (to_move->moves->rr)
 	{
-		rotate(head_a, head_b, 2);
+		rotate(a, b, 2);
 		to_move->moves->rr--;
 	}
 	while (to_move->moves->rrr)
 	{
-		reverse_rotate(head_a, head_b, 2);
+		reverse_rotate(a, b, 2);
 		to_move->moves->rrr--;
 	}
+}	
+
+void	execute_moves(t_number **head_a, t_number **head_b, t_number *to_move)
+{
+	execute_optimize(head_a, head_b, to_move);
 	while (to_move->moves->ra)
 	{
 		rotate(head_a, head_b, 0);

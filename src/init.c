@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 19:07:31 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/20 18:41:01 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/21 11:49:19 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	stack_add_back(t_number **stack, t_number *new)
 t_moves	*new_moves(void)
 {
 	t_moves		*new_moves;
-	
+
 	new_moves = malloc(sizeof(t_moves));
 	if (!new_moves)
 		return (NULL);
@@ -47,14 +47,14 @@ t_moves	*new_moves(void)
 	new_moves->rra = 0;
 	new_moves->rrb = 0;
 	new_moves->rr = 0;
-	new_moves->rrr = 0;	
+	new_moves->rrr = 0;
 	return (new_moves);
 }
 
 t_number	*new_number(int num)
 {
 	t_number	*new;
-	
+
 	new = malloc(sizeof(t_number));
 	if (!new)
 		return (NULL);

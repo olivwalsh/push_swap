@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 15:56:14 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/20 20:49:46 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/21 14:56:46 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	push_swap(t_number **a, t_number **b)
 		first_sort(a, b);
 		sort(a, b);
 	}
+	else if (size > 100 && size <= 500)
+		sort_big(a, b);
 }
 
 int	main(int argc, char **argv)
@@ -52,11 +54,6 @@ int	main(int argc, char **argv)
 	else
 		write(2, "Error\n", 6);
 	free(tab);
-	// TESTING
-	// printf("STACK A:\n");
-	// display_stack(head_a);
-	// printf("\n\n\nSTACK B:\n");
-	// display_stack(head_b);
 	clean_stack(&head_a);
 	return (0);
 }

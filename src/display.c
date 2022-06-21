@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 21:46:35 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/20 15:47:20 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/21 15:51:36 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	display_stack(t_number *head)
 		printf("ptr->index_a = %d\t\tptr->cost = %d\t\t", ptr->index_a, ptr->cost);
 		printf("ptr->moves->ra = %d, ->rb = %d, ->rr = %d, ", ptr->moves->ra, ptr->moves->rb, ptr->moves->rr);
 		printf("rra = %d, rrb = %d, rrr = %d\n", ptr->moves->rra, ptr->moves->rrb, ptr->moves->rrr);
-		
 		printf("\n- - - - - - - - - - - - - - - - - \n");
 		ptr = ptr->next;
 	}

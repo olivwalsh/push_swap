@@ -6,40 +6,11 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 19:57:42 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/20 20:39:50 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/21 14:52:52 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	clean_stack(t_number **head)
-{
-	t_number	*next;
-	t_number	*tmp;
-
-	tmp = head[0];
-	while (tmp && tmp->next)
-	{
-		//printf("curr = %p\t nxt = %p\n", tmp, tmp->next);
-		next = tmp->next;
-		free(tmp);
-		tmp = next;
-	}
-}
-
-int	is_sorted(t_number *head)
-{
-	t_number	*tmp;
-
-	tmp = head;
-	while (tmp && tmp->next)
-	{
-		if (tmp->num > tmp->next->num)
-			return (0);
-		tmp = tmp->next;
-	}
-	return (1);
-}
 
 int	get_min_index(t_number *s)
 {
@@ -69,7 +40,7 @@ int	get_min_index(t_number *s)
 
 int	get_max_index(t_number *head)
 {
-	t_number 	*ptr;
+	t_number	*ptr;
 	int			max;
 	int			i;
 
@@ -112,7 +83,7 @@ int	get_stack_size(t_number *head)
 
 int	get_max(t_number *head)
 {
-	t_number 	*ptr;
+	t_number	*ptr;
 	int			max;
 	int			i;
 
@@ -126,24 +97,6 @@ int	get_max(t_number *head)
 		ptr = ptr->next;
 	}
 	return (max);
-}
-
-int	get_min(t_number *head)
-{
-	t_number 	*ptr;
-	int			min;
-	int			i;
-
-	i = 0;
-	ptr = head;
-	min = ptr->num;
-	while (ptr)
-	{
-		if (ptr->num < min)
-			min = ptr->num;
-		ptr = ptr->next;
-	}
-	return (min);
 }
 
 int	ft_abs(int x)

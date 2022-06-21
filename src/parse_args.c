@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 16:26:31 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/20 20:41:55 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/21 11:27:39 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int	check_duplicates(int *tab, int size)
 
 int	fill_tab(int size, char **argv, int **tab)
 {
-	int	i;
+	int		i;
 	long	num;
 
 	tab[0] = malloc(sizeof(int) * size);
@@ -71,7 +71,6 @@ int	fill_tab(int size, char **argv, int **tab)
 		if (num > INT_MAX || num < INT_MIN)
 			return (0);
 		tab[0][i] = (int)num;
-		
 		i++;
 	}
 	return (check_duplicates(*tab, size));
@@ -85,7 +84,7 @@ int	check_args(int argc, char **argv, int *size)
 	i = 1;
 	*size = 0;
 	if (argc == 1)
-		return(0);
+		return (0);
 	while (argv[i])
 	{
 		if (argv[i][0] == '-')

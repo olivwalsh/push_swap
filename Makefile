@@ -10,7 +10,8 @@ CFLAGS = -Wall -Wextra -Werror -g
 
 #MEM = -fsanitize=address
 
-SRC =	src/moves.c \
+SRC =	src/basic_moves.c \
+		src/r_moves.c \
 		src/main.c \
 		src/parse_args.c \
 		src/init.c \
@@ -19,7 +20,9 @@ SRC =	src/moves.c \
 		src/presort.c \
 		src/display.c \
 		src/move_cost.c \
-		src/sort.c
+		src/sort.c \
+		src/indexes.c \
+		src/sort_big.c
 
 OBJDIR = objs
 
