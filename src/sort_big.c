@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 15:00:53 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/21 20:31:58 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/22 15:48:48 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,27 +46,27 @@ int	*find_pivot(t_number **head)
 	int	i;
 	int size;
 	int	*pivots;
-	int	j;
 
 	size = get_stack_size(*head);
 	i = size / chunck_size;
 	pivots = malloc(sizeof(int) * (i + 1));
 	if (!pivots)
 		return (NULL);
-	pivots[0] = 0;
-	j = 0;
-	while (j < i)
+	i = 0;
+	while (i < (size / chunck_size) + 1)
 	{
-		pivots[j + 1] = size / (i - j);
-		j++;
+		pivots[i] = i * chunck_size;
+		i++;
 	}
-	j = 0;
-	while (j <= i)
-	{
-		printf("pivots[%d] = %d\n", j, pivots[j]);
-		j++;
-	}
+	pivots[i] = size;
 	return (pivots);
+}
+
+int	is_inchunk(t_number *number, int min, int max)
+{
+	if (number->index > min && number->index <= max)
+		return (1);
+	return (0);		
 }
 
 t_number	*cheapest_in_chunk(t_number *head, int min, int max)
@@ -77,34 +77,24 @@ t_number	*cheapest_in_chunk(t_number *head, int min, int max)
 	if (!head)
 		return (NULL);
 	a = head;
-	cheapest = -1;
+	// initialize cheapest to first cheapest that belongs to current chunk
+	while (a && !is_inchunk(a, min, max))
+		a = a->next;
+	if (!a)
+		return (NULL);
+	cheapest = a->index_a;
+	a = head;
 	while (a)
 	{
-		if (a->index >= min && a->index <= max)
-		{
+		if (is_inchunk(a, min, max) && a->index_a < cheapest)
 			cheapest = a->index_a;
-			break ;
-		}
 		a = a->next;
 	}
 	a = head;
 	while (a)
 	{
-		if (a->index >= min && a->index <= max)
-		{
-			if (a->index_a < cheapest)
-				cheapest = a->index_a;
-		}
-		a = a->next;
-	}
-	a = head;
-	while (a)
-	{
-		if (a->index >= min && a->index <= max)
-		{
-			if (a->index_a == cheapest)
+		if (is_inchunk(a, min, max) && a->index_a == cheapest)
 				return (a);
-		}
 		a = a->next;
 	}
 	return (NULL);
@@ -114,27 +104,38 @@ void	sort_big(t_number **a, t_number **b)
 {
 	int	*pivots;
 	int	pivot;
-	int	i;
+	int	stack_size;
+	int	i, diff;
 	int tab_size;
 	t_number	*cheapest;
 
-	tab_size = get_stack_size(*a) / chunck_size;
+	stack_size = get_stack_size(*a);
+	tab_size = stack_size / chunck_size + 1;
 	display_stack(*a);
 	pivots = find_pivot(a);
 	i = 1;
 	while (i < tab_size)
 	{
 		pivot = pivots[i];
-		while (pivot)
+		diff = pivots[i] - pivots[i - 1];
+		while (diff + 2)
 		{
+			printf("chunk size left = %d", diff);
 			cost_to_pushb(*a);
 			cheapest = cheapest_in_chunk(*a, pivots[i - 1], pivots[i]);
 			if (!cheapest)
+			{
+				printf("cheapest not found\n");
 				break;
+			}
+			else
+				printf("cheapest found, executing moves\n");
 			execute_moves(a, b, cheapest);
 			push_b(a, b);
-			pivot--;
+			diff--;
+			
 		}
 		i++;
 	}
+	free(pivots);
 }
