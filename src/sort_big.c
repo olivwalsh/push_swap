@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 15:00:53 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/22 15:48:48 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/22 17:22:08 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,39 +71,38 @@ int	is_inchunk(t_number *number, int min, int max)
 
 t_number	*cheapest_in_chunk(t_number *head, int min, int max)
 {
-	t_number	*a;
-	int			cheapest;
+	t_number	*first;
+	t_number	*last;
 
 	if (!head)
 		return (NULL);
-	a = head;
-	// initialize cheapest to first cheapest that belongs to current chunk
-	while (a && !is_inchunk(a, min, max))
-		a = a->next;
-	if (!a)
+	first = head;
+	// find first elemt belonging to chunk
+	while (first && !is_inchunk(first, min, max))
+		first = first->next;
+	if (!first)
+	{
+		printf("first not found\n");
 		return (NULL);
-	cheapest = a->index_a;
-	a = head;
-	while (a)
-	{
-		if (is_inchunk(a, min, max) && a->index_a < cheapest)
-			cheapest = a->index_a;
-		a = a->next;
 	}
-	a = head;
-	while (a)
+	last = stack_last(head);
+	while (last && !is_inchunk(last, min, max))
+		last = last->previous;
+	if (!last)
 	{
-		if (is_inchunk(a, min, max) && a->index_a == cheapest)
-				return (a);
-		a = a->next;
+		printf("last not found\n");
+		return (NULL);
 	}
+	if (first->index_a < last->index_a)
+		return (first);
+	else
+		return (last);
 	return (NULL);
 }
 
 void	sort_big(t_number **a, t_number **b)
 {
 	int	*pivots;
-	int	pivot;
 	int	stack_size;
 	int	i, diff;
 	int tab_size;
@@ -111,29 +110,19 @@ void	sort_big(t_number **a, t_number **b)
 
 	stack_size = get_stack_size(*a);
 	tab_size = stack_size / chunck_size + 1;
-	display_stack(*a);
 	pivots = find_pivot(a);
 	i = 1;
-	while (i < tab_size)
+	while (i <= tab_size + 1)
 	{
-		pivot = pivots[i];
 		diff = pivots[i] - pivots[i - 1];
-		while (diff + 2)
+		while (diff)
 		{
-			printf("chunk size left = %d", diff);
+			reset_indexes(*a);
 			cost_to_pushb(*a);
 			cheapest = cheapest_in_chunk(*a, pivots[i - 1], pivots[i]);
-			if (!cheapest)
-			{
-				printf("cheapest not found\n");
-				break;
-			}
-			else
-				printf("cheapest found, executing moves\n");
 			execute_moves(a, b, cheapest);
 			push_b(a, b);
 			diff--;
-			
 		}
 		i++;
 	}

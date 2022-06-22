@@ -8,7 +8,7 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror -g
 
-#MEM = -fsanitize=address
+MEM = -fsanitize=address
 
 SRC =	src/basic_moves.c \
 		src/r_moves.c \

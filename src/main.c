@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 15:56:14 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/21 20:33:10 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/22 17:16:55 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@ void	push_swap(t_number **a, t_number **b)
 		sort(a, b);
 	}
 	else if (size > 100 && size <= 500)
+	{
 		sort_big(a, b);
+		sort(a, b);
+	}
 }
 
 int	main(int argc, char **argv)
