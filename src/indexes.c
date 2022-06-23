@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 11:30:40 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/21 11:48:40 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/23 12:54:23 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,11 @@ void	index_a(t_number *a, t_number *b)
 
 	head_a = a;
 	size = get_stack_size(a);
+	if (!a)
+	{
+		b->index_a = 0;
+		return ;
+	}
 	while (b)
 	{
 		a = head_a;

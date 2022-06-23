@@ -6,15 +6,11 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 15:00:53 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/22 17:22:08 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/23 13:03:11 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-// find cheapest element in stack a to send to b which belongs to first pivot
-// do same for other pivots
-// then same algo as for 100
 
 void	cost_to_pushb(t_number *head)
 {
@@ -45,15 +41,18 @@ int	*find_pivot(t_number **head)
 {
 	int	i;
 	int size;
+	int	tab_size;
 	int	*pivots;
 
 	size = get_stack_size(*head);
-	i = size / chunck_size;
-	pivots = malloc(sizeof(int) * (i + 1));
+	tab_size = size / chunck_size;
+	if (size % chunck_size != 0)
+		tab_size++;
+	pivots = malloc(sizeof(int) * (tab_size + 1));
 	if (!pivots)
 		return (NULL);
 	i = 0;
-	while (i < (size / chunck_size) + 1)
+	while (i < tab_size)
 	{
 		pivots[i] = i * chunck_size;
 		i++;
@@ -77,22 +76,15 @@ t_number	*cheapest_in_chunk(t_number *head, int min, int max)
 	if (!head)
 		return (NULL);
 	first = head;
-	// find first elemt belonging to chunk
 	while (first && !is_inchunk(first, min, max))
 		first = first->next;
 	if (!first)
-	{
-		printf("first not found\n");
 		return (NULL);
-	}
 	last = stack_last(head);
 	while (last && !is_inchunk(last, min, max))
 		last = last->previous;
 	if (!last)
-	{
-		printf("last not found\n");
 		return (NULL);
-	}
 	if (first->index_a < last->index_a)
 		return (first);
 	else
@@ -109,17 +101,19 @@ void	sort_big(t_number **a, t_number **b)
 	t_number	*cheapest;
 
 	stack_size = get_stack_size(*a);
-	tab_size = stack_size / chunck_size + 1;
+	tab_size = stack_size / chunck_size;
+	if (stack_size % chunck_size != 0)
+		tab_size++;
 	pivots = find_pivot(a);
-	i = 1;
-	while (i <= tab_size + 1)
+	i = 0;
+	while (i < tab_size)
 	{
-		diff = pivots[i] - pivots[i - 1];
+		diff = pivots[i + 1] - pivots[i];
 		while (diff)
 		{
 			reset_indexes(*a);
 			cost_to_pushb(*a);
-			cheapest = cheapest_in_chunk(*a, pivots[i - 1], pivots[i]);
+			cheapest = cheapest_in_chunk(*a, pivots[i], pivots[i + 1]);
 			execute_moves(a, b, cheapest);
 			push_b(a, b);
 			diff--;

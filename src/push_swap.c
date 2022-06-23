@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 14:27:35 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/21 14:51:24 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/23 14:40:55 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	clean_stack(t_number **head)
 	while (tmp && tmp->next)
 	{
 		next = tmp->next;
+		free(tmp->moves);
 		free(tmp);
 		tmp = next;
 	}

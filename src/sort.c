@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 12:30:33 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/21 12:40:18 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/23 11:26:20 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void	execute_moves(t_number **head_a, t_number **head_b, t_number *to_move)
 
 void	sort(t_number **head_a, t_number **head_b)
 {
+	reset_indexes(*head_a);
 	while (get_stack_size(*head_b))
 	{
 		update_move_cost(*head_a, *head_b);
