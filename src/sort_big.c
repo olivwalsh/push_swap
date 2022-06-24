@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 15:00:53 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/24 19:04:23 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/24 19:25:20 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ int	*find_pivot(t_number **head)
 	int	*pivots;
 
 	size = get_stack_size(*head);
-	tab_size = size / chunck_size;
-	if (size % chunck_size != 0)
+	tab_size = size / CHUNCK_SIZE;
+	if (size % CHUNCK_SIZE != 0)
 		tab_size++;
 	pivots = malloc(sizeof(int) * (tab_size + 1));
 	if (!pivots)
@@ -54,7 +54,7 @@ int	*find_pivot(t_number **head)
 	i = 0;
 	while (i < tab_size)
 	{
-		pivots[i] = i * chunck_size;
+		pivots[i] = i * CHUNCK_SIZE;
 		i++;
 	}
 	pivots[i] = size;
@@ -99,8 +99,8 @@ void	sort_big(t_number **a, t_number **b)
 	int		diff;
 	int		tab_size;
 
-	tab_size = get_stack_size(*a) / chunck_size;
-	if (get_stack_size(*a) % chunck_size != 0)
+	tab_size = get_stack_size(*a) / CHUNCK_SIZE;
+	if (get_stack_size(*a) % CHUNCK_SIZE != 0)
 		tab_size++;
 	p = find_pivot(a);
 	i = 0;
