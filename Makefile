@@ -6,9 +6,7 @@ NAME = push_swap
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -g
-
-MEM = -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g3
 
 SRC =	src/basic_moves.c \
 		src/r_moves.c \
@@ -22,7 +20,8 @@ SRC =	src/basic_moves.c \
 		src/move_cost.c \
 		src/sort.c \
 		src/indexes.c \
-		src/sort_big.c
+		src/sort_big.c \
+		src/ft_split.c
 
 OBJDIR = objs
 

@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 16:26:31 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/21 11:27:39 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/24 14:50:32 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,20 +57,32 @@ static int	check_duplicates(int *tab, int size)
 int	fill_tab(int size, char **argv, int **tab)
 {
 	int		i;
+	int		j;
 	long	num;
+	int		x;
+	char	**split;
 
 	tab[0] = malloc(sizeof(int) * size);
 	if (!tab[0])
 		return (0);
 	i = 0;
+	j = 0;
 	while (argv[i])
 	{
-		num = ps_atoi(argv[i]);
-		if (argv[i][0] == '\0')
-			return (0);
-		if (num > INT_MAX || num < INT_MIN)
-			return (0);
-		tab[0][i] = (int)num;
+		split = ft_split(argv[i]);
+		x = 0;
+		while (split[x] != NULL)
+		{
+			num = ps_atoi(split[x]);
+			if (split[x][0] == '\0')
+				return (0);
+			if (num > INT_MAX || num < INT_MIN)
+				return (0);
+			tab[0][j] = (int)num;
+			j++;
+			x++;
+		}
+		free_previous(split, x);
 		i++;
 	}
 	return (check_duplicates(*tab, size));
@@ -80,6 +92,8 @@ int	check_args(int argc, char **argv, int *size)
 {
 	int	i;
 	int	j;
+	int	x;
+	char	**split;
 
 	i = 1;
 	*size = 0;
@@ -87,18 +101,26 @@ int	check_args(int argc, char **argv, int *size)
 		return (0);
 	while (argv[i])
 	{
-		if (argv[i][0] == '-')
-				j = 1;
-		else
-			j = 0;
-		while (argv[i][j])
+		split = ft_split(argv[i]);
+		x = 0;
+		while (split[x] != NULL)
 		{
-			if (!ft_isdigit(argv[i][j]))
-				return (0);
-			j++;
+			if (split[x][0] == '-')
+				j = 1;
+			else
+				j = 0;
+			while (split[x][j])
+			{
+				if (!ft_isdigit(split[x][j]))
+					return (0);
+				j++;
+			}
+			*size += 1;
+			x++;
 		}
+		free_previous(split, x);
+		free(split);
 		i++;
-		*size += 1;
 	}
 	return (1);
 }

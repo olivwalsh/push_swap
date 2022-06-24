@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 15:34:09 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/21 18:06:13 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/24 14:49:32 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,8 @@ int			get_stack_size(t_number *head);
 // FILE display.c
 void		display_stack(t_number *s);
 void		display_tab(int *tab, int size);
+// FILE ft_split.c
+char		**ft_split(char *str);
+char		**free_previous(char **str, int x);
 
 #endif

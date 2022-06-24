@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 15:56:14 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/23 14:39:42 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/24 14:34:07 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ int	main(int argc, char **argv)
 		initialize(&head_a, &tab, size);
 		if (!is_sorted(head_a))
 			push_swap(&head_a, &head_b);
+		clean_stack(&head_a);
 	}
 	else
 		write(2, "Error\n", 6);
 	free(tab);
-	clean_stack(&head_a);
 	return (0);
 }
