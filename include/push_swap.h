@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 15:34:09 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/24 14:49:32 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/24 15:43:31 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 # define PUSH_SWAP_H
 
 # define chunck_size 150
-
-# include "libft/libft.h"
 # include <stdio.h>
 # include <unistd.h>
 # include <limits.h>
+# include <stdlib.h>
 
 typedef struct s_moves
 {
@@ -71,7 +70,7 @@ void		reverse_rotate_s(t_number **head);
 void		rotate_s(t_number **head);
 void		rotate(t_number **a, t_number **b, int i);
 // FILE parse_args.c
-int			check_args(int argc, char **argv, int *size);
+int			check_args(char **argv, int *size);
 int			fill_tab(int size, char **argv, int **tab);
 // FILE presort.c
 void		presort(t_number *a, int *tab, int size, int max);
@@ -96,8 +95,5 @@ int			get_stack_size(t_number *head);
 // FILE display.c
 void		display_stack(t_number *s);
 void		display_tab(int *tab, int size);
-// FILE ft_split.c
-char		**ft_split(char *str);
-char		**free_previous(char **str, int x);
 
 #endif

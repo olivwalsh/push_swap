@@ -6,11 +6,18 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 16:26:31 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/24 15:11:03 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/24 15:42:42 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static int	ft_isdigit(int c)
+{
+	if (c < '0' || c > '9')
+		return (0);
+	return (1);
+}
 
 static long	ps_atoi(const char *nptr)
 {
@@ -76,15 +83,13 @@ int	fill_tab(int size, char **argv, int **tab)
 	return (check_duplicates(*tab, size));
 }
 
-int	check_args(int argc, char **argv, int *size)
+int	check_args(char **argv, int *size)
 {
 	int	i;
 	int	j;
 
 	i = 1;
 	*size = 0;
-	if (argc == 1)
-		return (0);
 	while (argv[i])
 	{
 		if (argv[i][0] == '-')

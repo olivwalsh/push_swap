@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 15:56:14 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/24 14:34:07 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/24 15:33:38 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,9 @@ int	main(int argc, char **argv)
 	tab = NULL;
 	head_b = NULL;
 	head_a = NULL;
-	if (check_args(argc, argv, &size) && fill_tab(size, ++argv, &tab))
+	if (argc < 2)
+		return (0);
+	if (check_args(argv, &size) && fill_tab(size, ++argv, &tab))
 	{
 		initialize(&head_a, &tab, size);
 		if (!is_sorted(head_a))

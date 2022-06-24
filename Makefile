@@ -20,8 +20,7 @@ SRC =	src/basic_moves.c \
 		src/move_cost.c \
 		src/sort.c \
 		src/indexes.c \
-		src/sort_big.c \
-		src/ft_split.c
+		src/sort_big.c
 
 OBJDIR = objs
 
@@ -31,32 +30,23 @@ OBJ = $(addprefix ${OBJDIR}/,${SRC:.c=.o})
 
 INC = -I./${INCDIR}
 
-LIBFT = ${INCDIR}/libft/libft.a
-
 all: $(NAME)
 
-${LIBFT}: libft
-
-$(NAME): $(OBJ) ${LIBFT}
+$(NAME): $(OBJ)
 	@echo -n "Compiling push_swap"
-	@$(CC) $(CFLAGS) $(MEM) $(INC) $(OBJ) -o $@ $(LIBFT)
+	@$(CC) $(CFLAGS) $(MEM) $(INC) $(OBJ) -o $@
 	@echo ${GREEN}"\t\tOK"${RESET}
 
 ${OBJDIR}/%.o : %.c
 	mkdir -p ${@D}
 	$(CC) $(CFLAGS) $(MEM) $(INC) -c $< -o $@
 
-libft:
-	@make -s -C${INCDIR}/libft
-
 clean :
 	rm -rf $(OBJDIR)
-	@make clean -s -C${INCDIR}/libft
 
 fclean: clean
 	rm -f $(NAME)
-	@make fclean -s -C${INCDIR}/libft
 
 re: fclean all
 
-.PHONY: all clean fclean re bonus libft
+.PHONY: all clean fclean re bonus
