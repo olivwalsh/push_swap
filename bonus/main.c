@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 15:53:54 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/24 18:18:31 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/24 18:58:08 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,30 @@
 
 void	move(char *move, t_number **head_a, t_number **head_b)
 {
-	if (ft_strcmp("pa", move))
+	if (ft_strncmp("pa", move, ft_strlen(move)))
 		push_a(head_a, head_b);
-	if (ft_strcmp("pb", move))
+	else if (ft_strncmp("pb", move, ft_strlen(move)))
 		push_b(head_a, head_b);
-	if (ft_strcmp("sa", move))
+	else if (ft_strncmp("sa", move, ft_strlen(move)))
 		swap(head_a, head_b, 0);
-	if (ft_strcmp("sb", move))
+	else if (ft_strncmp("sb", move, ft_strlen(move)))
 		swap(head_a, head_b, 1);
-	if (ft_strcmp("ss", move))
+	else if (ft_strncmp("ss", move, ft_strlen(move)))
 		swap(head_a, head_b, 2);
-	if (ft_strcmp("ra", move))
+	else if (ft_strncmp("ra", move, ft_strlen(move)))
 		rotate(head_a, head_b, 0);
-	if (ft_strcmp("rb", move))
+	else if (ft_strncmp("rb", move, ft_strlen(move)))
 		rotate(head_a, head_b, 1);
-	if (ft_strcmp("rr", move))
+	else if (ft_strncmp("rr", move, ft_strlen(move)))
 		rotate(head_a, head_b, 2);
-	if (ft_strcmp("rra", move))
+	else if (ft_strncmp("rra", move, ft_strlen(move)))
 		reverse_rotate(head_a, head_b, 0);
-	if (ft_strcmp("rrb", move))
+	else if (ft_strncmp("rrb", move, ft_strlen(move)))
 		reverse_rotate(head_a, head_b, 1);
-	if (ft_strcmp("rrr", move))
-		reverse_rotate(head_a, head_b, 2);	
+	else if (ft_strncmp("rrr", move, ft_strlen(move)))
+		reverse_rotate(head_a, head_b, 2);
+	else
+		return ;
 }
 
 int	checker(t_number **head_a, t_number **head_b)
@@ -45,10 +47,10 @@ int	checker(t_number **head_a, t_number **head_b)
 	instruction = get_next_line(0);
 	while (instruction)
 	{
-		move(instruction, head_a, head_b);		
+		move(instruction, head_a, head_b);
 		instruction = get_next_line(0);
 	}
-	if (is_sorted(*head_a) && !*head_b)
+	if (is_sorted(*head_a))
 		return (1);
 	return (0);
 }
@@ -59,7 +61,7 @@ int	main(int argc, char **argv)
 	t_number	*head_b;
 	int			*tab;
 	int			size;
-	
+
 	tab = NULL;
 	head_a = NULL;
 	if (argc < 2)

@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 15:53:06 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/24 18:07:31 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/24 18:57:51 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_moves
 {
 	int	ra;
 	int	rb;
-	int rra;
+	int	rra;
 	int	rrb;
 	int	rr;
 	int	rrr;
@@ -40,7 +40,7 @@ typedef struct s_number
 	int				index_a;
 	int				index_b;
 	int				cost;
-	t_moves			*moves; 
+	t_moves			*moves;
 	int				max;
 }				t_number;
 
@@ -61,11 +61,11 @@ int			is_sorted(t_number *head);
 // FILE bonus_utils2.c
 void		clean_buf(char *buf);
 int			has_nl(char *s);
-int			ft_strcmp(char *s1, char *s2);
+int			ft_strncmp(char *s1, char *s2, int n);
 char		*ft_strjoin(char *s1, char *s2);
 int			ft_strlen(char *s);
 // FILE bonus_presort.c
-void	presort(t_number *a, int *tab, int size, int max);
+void		presort(t_number *a, int *tab, int size, int max);
 // FILE basic_moves.c
 void		push_a(t_number **a, t_number **b);
 void		push_b(t_number **a, t_number **b);

@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 15:00:53 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/23 13:03:11 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/24 19:04:23 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	cost_to_pushb(t_number *head)
 int	*find_pivot(t_number **head)
 {
 	int	i;
-	int size;
+	int	size;
 	int	tab_size;
 	int	*pivots;
 
@@ -65,7 +65,7 @@ int	is_inchunk(t_number *number, int min, int max)
 {
 	if (number->index > min && number->index <= max)
 		return (1);
-	return (0);		
+	return (0);
 }
 
 t_number	*cheapest_in_chunk(t_number *head, int min, int max)
@@ -94,31 +94,28 @@ t_number	*cheapest_in_chunk(t_number *head, int min, int max)
 
 void	sort_big(t_number **a, t_number **b)
 {
-	int	*pivots;
-	int	stack_size;
-	int	i, diff;
-	int tab_size;
-	t_number	*cheapest;
+	int		*p;
+	int		i;
+	int		diff;
+	int		tab_size;
 
-	stack_size = get_stack_size(*a);
-	tab_size = stack_size / chunck_size;
-	if (stack_size % chunck_size != 0)
+	tab_size = get_stack_size(*a) / chunck_size;
+	if (get_stack_size(*a) % chunck_size != 0)
 		tab_size++;
-	pivots = find_pivot(a);
+	p = find_pivot(a);
 	i = 0;
 	while (i < tab_size)
 	{
-		diff = pivots[i + 1] - pivots[i];
+		diff = p[i + 1] - p[i];
 		while (diff)
 		{
 			reset_indexes(*a);
 			cost_to_pushb(*a);
-			cheapest = cheapest_in_chunk(*a, pivots[i], pivots[i + 1]);
-			execute_moves(a, b, cheapest);
+			execute_moves(a, b, cheapest_in_chunk(*a, p[i], p[i + 1]));
 			push_b(a, b);
 			diff--;
 		}
 		i++;
 	}
-	free(pivots);
+	free(p);
 }

@@ -6,14 +6,14 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 15:34:09 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/24 15:43:31 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/24 19:06:14 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# define chunck_size 150
+# define CHUNCK_SIZE 150
 # include <stdio.h>
 # include <unistd.h>
 # include <limits.h>
@@ -23,7 +23,7 @@ typedef struct s_moves
 {
 	int	ra;
 	int	rb;
-	int rra;
+	int	rra;
 	int	rrb;
 	int	rr;
 	int	rrr;
@@ -38,7 +38,7 @@ typedef struct s_number
 	int				index_a;
 	int				index_b;
 	int				cost;
-	t_moves			*moves; 
+	t_moves			*moves;
 	int				max;
 }				t_number;
 
@@ -81,7 +81,7 @@ void		sort_five(t_number **head_a, t_number **head_b);
 void		sort_three(t_number **a, t_number **b);
 // FILE sort.c
 t_number	*cheapest_to_move(t_number *head_b);
-void		execute_moves(t_number **head_a, t_number **head_b, t_number *to_move);
+void		execute_moves(t_number **a, t_number **b, t_number *to_move);
 void		final_sort_step(t_number **head_a, t_number **head_b);
 void		sort(t_number **head_a, t_number **head_b);
 // FILE sort_big.c
@@ -92,8 +92,5 @@ int			get_max(t_number *head);
 int			get_max_index(t_number *head);
 int			get_min_index(t_number *s);
 int			get_stack_size(t_number *head);
-// FILE display.c
-void		display_stack(t_number *s);
-void		display_tab(int *tab, int size);
 
 #endif

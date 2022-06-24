@@ -18,7 +18,6 @@ SRC =	src/basic_moves.c \
 		src/push_swap.c \
 		src/tools.c \
 		src/presort.c \
-		src/display.c \
 		src/move_cost.c \
 		src/sort.c \
 		src/indexes.c \

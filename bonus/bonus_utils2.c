@@ -6,21 +6,20 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 08:01:37 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/24 18:18:24 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/24 18:53:51 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_bonus.h"
 
-int	ft_strcmp(char *s1, char *s2)
+int	ft_strncmp(char *s1, char *s2, int n)
 {
 	int	i;
 
-	
 	i = 0;
 	if (!s1 || !s2)
 		return (0);
-	while (s1[i] && s2[i])
+	while (i < (n - 1))
 	{
 		if (s1[i] != s2[i])
 			return (0);
