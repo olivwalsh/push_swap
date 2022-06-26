@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 16:06:27 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/26 10:48:50 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/26 11:05:02 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ static void	update_head(t_number **head)
 		*head = NULL;
 }
 
-void	push_a(t_number **head_a, t_number **head_b)
+int	push_a(t_number **head_a, t_number **head_b)
 {
 	t_number	*a_first;
 	t_number	*new;
 
 	if (!*head_b)
-		return ;
+		return (0);
 	new = *head_b;
 	update_head(head_b);
 	if (*head_a)
@@ -46,15 +46,16 @@ void	push_a(t_number **head_a, t_number **head_b)
 		(*head_a)->next = NULL;
 		(*head_a)->previous = NULL;
 	}
+	return (1);
 }
 
-void	push_b(t_number **head_a, t_number **head_b)
+int	push_b(t_number **head_a, t_number **head_b)
 {
 	t_number	*b_first;
 	t_number	*new;
 
 	if (!*head_a)
-		return ;
+		return (0);
 	new = *head_a;
 	update_head(head_a);
 	if (*head_b)
@@ -71,6 +72,7 @@ void	push_b(t_number **head_a, t_number **head_b)
 		(*head_b)->next = NULL;
 		(*head_b)->previous = NULL;
 	}
+	return (1);
 }
 
 void	swap_s(t_number **head)
@@ -91,15 +93,23 @@ void	swap_s(t_number **head)
 	*head = first;
 }
 
-void	swap(t_number **a, t_number **b, int i)
+int	swap(t_number **a, t_number **b, int i)
 {
 	if (i == 0)
+	{
 		swap_s(a);
+		return (1);
+	}
 	else if (i == 1)
+	{
 		swap_s(b);
+		return (1);
+	}
 	else if (i == 2)
 	{
 		swap_s(a);
 		swap_s(b);
+		return (1);
 	}
+	return (0);
 }

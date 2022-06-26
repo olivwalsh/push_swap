@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 15:53:06 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/24 18:57:51 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/26 11:09:19 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define PUSH_SWAP_BONUS_H
 # define BUFFER_SIZE 2048
 
-# include <stdio.h>
 # include <unistd.h>
 # include <limits.h>
 # include <stdlib.h>
@@ -67,14 +66,14 @@ int			ft_strlen(char *s);
 // FILE bonus_presort.c
 void		presort(t_number *a, int *tab, int size, int max);
 // FILE basic_moves.c
-void		push_a(t_number **a, t_number **b);
-void		push_b(t_number **a, t_number **b);
-void		swap(t_number **a, t_number **b, int i);
+int			push_a(t_number **a, t_number **b);
+int			push_b(t_number **a, t_number **b);
+int			swap(t_number **a, t_number **b, int i);
 void		swap_s(t_number **head);
 // FILE r_moves.c
-void		reverse_rotate(t_number **a, t_number **b, int i);
+int			reverse_rotate(t_number **a, t_number **b, int i);
 void		reverse_rotate_s(t_number **head);
 void		rotate_s(t_number **head);
-void		rotate(t_number **a, t_number **b, int i);
+int			rotate(t_number **a, t_number **b, int i);
 
 #endif
