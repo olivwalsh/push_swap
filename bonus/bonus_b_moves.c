@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 16:06:27 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/24 18:09:52 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/26 10:48:50 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,18 +76,19 @@ void	push_b(t_number **head_a, t_number **head_b)
 void	swap_s(t_number **head)
 {
 	t_number	*tmp;
-	t_number	*next;
+	t_number	*first;
 
 	if (!(*head) || !((*head)->next))
 		return ;
 	tmp = *head;
-	next = (*head)->next;
-	tmp->previous = next;
-	next->next->previous = tmp;
-	tmp->next = next->next;
-	next->previous = NULL;
-	next->next = *head;
-	*head = next;
+	first = (*head)->next;
+	tmp->previous = first;
+	if (first->next)
+		first->next->previous = tmp;
+	tmp->next = first->next;	
+	first->previous = NULL;
+	first->next = tmp;
+	*head = first;
 }
 
 void	swap(t_number **a, t_number **b, int i)
