@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 16:06:27 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/26 11:05:02 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/26 11:30:02 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	swap_s(t_number **head)
 	tmp->previous = first;
 	if (first->next)
 		first->next->previous = tmp;
-	tmp->next = first->next;	
+	tmp->next = first->next;
 	first->previous = NULL;
 	first->next = tmp;
 	*head = first;

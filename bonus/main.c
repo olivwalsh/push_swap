@@ -6,7 +6,7 @@
 /*   By: owalsh <owalsh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 15:53:54 by owalsh            #+#    #+#             */
-/*   Updated: 2022/06/26 11:18:06 by owalsh           ###   ########.fr       */
+/*   Updated: 2022/06/26 11:32:15 by owalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,13 @@ int	checker(t_number **head_a, t_number **head_b)
 	char	*instruction;
 
 	instruction = get_next_line(0);
-	while (instruction && move(instruction, head_a, head_b))
+	while (instruction)
 	{
+		if (!move(instruction, head_a, head_b))
+		{
+			free(instruction);
+			return (0);
+		}
 		free(instruction);
 		instruction = get_next_line(0);
 	}
